@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -74,7 +76,12 @@ public class LaBattailleDesProgrammes {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					//TODO : connexion popup
+					continueText.setVisible(false);
+					//connexion popup
+					ConnexionPopup dialog = new ConnexionPopup();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+					dialog.setAlwaysOnTop(true);
 				}
 			}
 		});
