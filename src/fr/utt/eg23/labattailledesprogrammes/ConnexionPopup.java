@@ -80,24 +80,11 @@ public class ConnexionPopup extends JDialog {
 		    }
 		});
 		
-		JButton okButton = new JButton("Valider");
-		okButton.setFont(LaBatailleDesProgrammes.GAME_FONT);
-		okButton.setForeground(Color.WHITE);
-		okButton.setBackground(null);
+		JButton okButton = new TextButton("Valider", 15f, () -> {});
 		okButton.setBorder(new EmptyBorder(10, 10, 10, 20));
 		okButton.setActionCommand("OK");
 		buttonPane.add(okButton, BorderLayout.EAST);
-		//change text color when mouse over
 		getRootPane().setDefaultButton(okButton);
-		okButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        okButton.setForeground(Color.CYAN);		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		        okButton.setForeground(Color.WHITE);
-		    }
-		});
-
 	}
 
 }
