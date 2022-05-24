@@ -78,10 +78,13 @@ public class LaBattailleDesProgrammes {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					continueText.setVisible(false);
 					//connexion popup
-					ConnexionPopup dialog = new ConnexionPopup();
+					/*ConnexionPopup dialog = new ConnexionPopup();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
-					dialog.setAlwaysOnTop(true);
+					dialog.setAlwaysOnTop(true);*/
+					MainMenu mainMenu = new MainMenu();
+					frame.getContentPane().removeAll();
+					frame.getContentPane().add(mainMenu);
 				}
 			}
 		});
