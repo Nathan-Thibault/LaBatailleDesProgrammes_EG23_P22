@@ -21,16 +21,16 @@ public class MainMenu extends JPanel {
 
     public MainMenu(){
         super();
-        this.setBackground(LaBattailleDesProgrammes.COLOR_BACKGROUND);
+        this.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
         setLayout(new BorderLayout());
         panelButtons = new JPanel();
         panelButtons.setLayout(new GridLayout(4,1));
-        panelButtons.setBackground(LaBattailleDesProgrammes.COLOR_BACKGROUND);
+        panelButtons.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
         panelDroite = new JPanel();
         panelDroite.setLayout(new BorderLayout());
-        panelDroite.setBackground(LaBattailleDesProgrammes.COLOR_BACKGROUND);
+        panelDroite.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
 
 
@@ -92,7 +92,7 @@ public class MainMenu extends JPanel {
 
     public ImageIcon getImageToSize(String imageName, int width, int height) {
         try {
-            BufferedImage buffImg = ImageIO.read(LaBattailleDesProgrammes.class.getResource("/images/" + imageName));
+            BufferedImage buffImg = ImageIO.read(LaBatailleDesProgrammes.class.getResource("/images/" + imageName));
             Image img = buffImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             return new ImageIcon(img);
         } catch (IOException e) {

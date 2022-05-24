@@ -7,15 +7,21 @@ public class LaBatailleDesProgrammes {
 
     private JFrame frame;
 
+    private static LaBatailleDesProgrammes instance;
+
     public static final Color COLOR_BACKGROUND = new Color(55, 60, 72);
 	public static final Font GAME_FONT = new Font("Verdana Pro", Font.BOLD | Font.ITALIC, 15);
     public static final Dimension FRAME_SIZE = new Dimension(1280,720);
 
+    public static LaBatailleDesProgrammes getInstance(){
+        return instance;
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                LaBatailleDesProgrammes window = new LaBatailleDesProgrammes();
-                window.frame.setVisible(true);
+                instance = new LaBatailleDesProgrammes();
+                instance.frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
