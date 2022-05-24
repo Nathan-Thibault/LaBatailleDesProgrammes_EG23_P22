@@ -12,11 +12,11 @@ public class MainMenu extends JPanel {
     private JLabel labelImageMenu;
     private JPanel panelButtons;
     private JPanel panelDroite;
-    private JButton btnJouer;
-    private JButton btnTutoriel;
-    private JButton btnBoutique;
-    private JButton btnInfos;
-    private JButton btnQuitter;
+    private TextButton btnJouer;
+    private TextButton btnTutoriel;
+    private TextButton btnBoutique;
+    private TextButton btnInfos;
+    private TextButton btnQuitter;
     private JButton btnSettings;
 
     public MainMenu(){
@@ -36,38 +36,35 @@ public class MainMenu extends JPanel {
 
         labelImageMenu = new JLabel("");
 
-        btnJouer = new JButton("Jouer");
-        this.btnJouer.setFont(new Font("Verdana Pro", Font.BOLD|Font.ITALIC, 50));
-        this.btnJouer.setForeground(Color.WHITE);
-        this.btnJouer.setBackground(null);
-        this.btnJouer.setBorder(new EmptyBorder(10, 25, 10, 10));
+        btnJouer = new TextButton("Jouer", 50, () -> {
+            //TODO popup matchmaking
+        });
+        btnJouer.setBorder(new EmptyBorder(10, 25, 10, 10));
         this.btnJouer.setHorizontalAlignment(SwingConstants.LEFT);
 
-        btnTutoriel = new JButton("Tutoriel");
-        this.btnTutoriel.setFont(new Font("Verdana Pro", Font.BOLD|Font.ITALIC, 50));
-        this.btnTutoriel.setForeground(Color.WHITE);
-        this.btnTutoriel.setBackground(null);
+
+
+        btnTutoriel = new TextButton("Tutoriel", 50, () -> {
+            //TODO fenetre Tuto
+        });
         this.btnTutoriel.setBorder(new EmptyBorder(10, 25, 10, 10));
         this.btnTutoriel.setHorizontalAlignment(SwingConstants.LEFT);
 
-        btnBoutique = new JButton("Boutique");
-        this.btnBoutique.setFont(new Font("Verdana Pro", Font.BOLD|Font.ITALIC, 50));
-        this.btnBoutique.setForeground(Color.WHITE);
-        this.btnBoutique.setBackground(null);
+        btnBoutique = new TextButton("Boutique", 50, () -> {
+            //TODO fenetre Boutique
+        });
         this.btnBoutique.setBorder(new EmptyBorder(10, 25, 10, 10));
         this.btnBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 
-        btnInfos = new JButton("Infos");
-        this.btnInfos.setFont(new Font("Verdana Pro", Font.BOLD|Font.ITALIC, 50));
-        this.btnInfos.setForeground(Color.WHITE);
-        this.btnInfos.setBackground(null);
+        btnInfos = new TextButton("Infos", 50, () -> {
+            //TODO fenetre Infos
+        });
         this.btnInfos.setBorder(new EmptyBorder(10, 25, 10, 10));
         this.btnInfos.setHorizontalAlignment(SwingConstants.LEFT);
 
-        btnQuitter = new JButton("Quitter");
-        this.btnQuitter.setFont(new Font("Verdana Pro", Font.BOLD|Font.ITALIC, 30));
-        this.btnQuitter.setForeground(Color.WHITE);
-        this.btnQuitter.setBackground(null);
+        btnQuitter = new TextButton("Quitter", 30, () -> {
+            System.exit(0);
+        });
         this.btnQuitter.setBorder(new EmptyBorder(10, 50, 10, 25));
         this.btnQuitter.setHorizontalAlignment(SwingConstants.RIGHT);
 
