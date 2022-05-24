@@ -2,7 +2,6 @@ package fr.utt.eg23.labattailledesprogrammes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
@@ -20,40 +19,33 @@ import javax.swing.JCheckBox;
 
 public class ConnexionPopup extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
-	private JTextField textFieldID;
-	private JPasswordField passwordField;
-	private final Font labelFont = new Font("Verdana Pro", Font.BOLD | Font.ITALIC, 15);
-
-	/**
-	 * Create the dialog.
-	 */
 	public ConnexionPopup() {
 		setBounds(100, 100, 450, 200);
 		setTitle("Connexion");
 		getContentPane().setLayout(new BorderLayout());
+
+		JPanel contentPanel = new JPanel();
+		contentPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
+		contentPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		contentPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
-		contentPanel.setBackground(LaBattailleDesProgrammes.COLOR_BACKGROUND);
-		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-		
 		JLabel labelID = new JLabel("Identifiant : ");
-		labelID.setFont(labelFont);
+		labelID.setFont(LaBatailleDesProgrammes.GAME_FONT);
 		labelID.setForeground(Color.WHITE);
 		contentPanel.add(labelID);
-		
-		textFieldID = new JTextField();
+
+		JTextField textFieldID = new JTextField();
 		textFieldID.setText("xXx_darkEG23_xXx");
 		textFieldID.setBorder(null);
 		contentPanel.add(textFieldID);
 		
 		JLabel labelPassword = new JLabel("Mot de passe :");
-		labelPassword.setFont(labelFont);
+		labelPassword.setFont(LaBatailleDesProgrammes.GAME_FONT);
 		labelPassword.setForeground(Color.WHITE);
 		contentPanel.add(labelPassword);
-		
-		passwordField = new JPasswordField();
+
+		JPasswordField passwordField = new JPasswordField();
 		passwordField.setBorder(null);
 		contentPanel.add(passwordField);
 		
@@ -65,11 +57,11 @@ public class ConnexionPopup extends JDialog {
 		contentPanel.add(checkBoxRemember);
 		
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBackground(LaBattailleDesProgrammes.COLOR_BACKGROUND);
+		buttonPane.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 		buttonPane.setLayout(new BorderLayout());
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		
-		JButton btnLostPassword = new JButton("Mot de passe oubli\u00E9 ?");
+		JButton btnLostPassword = new JButton("Mot de passe oublié ?");
 		//underlined font
 		Font font = new Font("Verdana Pro", Font.BOLD , 10);
 		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
@@ -89,7 +81,7 @@ public class ConnexionPopup extends JDialog {
 		});
 		
 		JButton okButton = new JButton("Valider");
-		okButton.setFont(labelFont);
+		okButton.setFont(LaBatailleDesProgrammes.GAME_FONT);
 		okButton.setForeground(Color.WHITE);
 		okButton.setBackground(null);
 		okButton.setBorder(new EmptyBorder(10, 10, 10, 20));
