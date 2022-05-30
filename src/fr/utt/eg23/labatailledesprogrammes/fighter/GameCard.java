@@ -62,14 +62,4 @@ public class GameCard extends JPanel {
         strategyComboBox.setSelectedIndex(2);
         add(strategyComboBox);
     }
-
-    public static void main(String[] a) {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        panel.add(new GameCard(UTTBranch.ISI, FighterType.SOLDIER));
-        frame.getContentPane().add(panel);
-        frame.setSize(500, 500);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
 }
