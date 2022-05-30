@@ -1,4 +1,6 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes;
+
+import fr.utt.eg23.labatailledesprogrammes.screens.TitleScreen;
 
 import javax.swing.*;
 import java.awt.*;

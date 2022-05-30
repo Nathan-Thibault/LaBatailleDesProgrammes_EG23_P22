@@ -1,4 +1,8 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.fighter;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

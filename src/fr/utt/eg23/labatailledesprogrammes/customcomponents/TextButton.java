@@ -1,4 +1,6 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.customcomponents;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

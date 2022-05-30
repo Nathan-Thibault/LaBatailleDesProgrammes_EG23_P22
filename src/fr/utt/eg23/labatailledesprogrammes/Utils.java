@@ -1,4 +1,4 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

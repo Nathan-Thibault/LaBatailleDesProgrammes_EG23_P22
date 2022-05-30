@@ -1,4 +1,8 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.popups;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.screens.MainMenu;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

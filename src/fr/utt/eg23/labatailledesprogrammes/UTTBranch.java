@@ -1,4 +1,4 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes;
 
 public enum UTTBranch {
     ISI("Informatique et Système d'Information", "isi"),

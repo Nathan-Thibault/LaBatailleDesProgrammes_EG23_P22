@@ -1,4 +1,9 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.screens;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.Utils;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.BlinkLabel;
+import fr.utt.eg23.labatailledesprogrammes.popups.ConnexionPopup;
 
 import javax.swing.*;
 import java.awt.*;

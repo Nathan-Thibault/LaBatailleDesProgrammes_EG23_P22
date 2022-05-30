@@ -1,4 +1,8 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.fighter;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
+import fr.utt.eg23.labatailledesprogrammes.Utils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

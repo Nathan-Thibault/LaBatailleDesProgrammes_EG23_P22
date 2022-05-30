@@ -1,4 +1,4 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.customcomponents;
 
 import javax.swing.*;
 import java.awt.*;

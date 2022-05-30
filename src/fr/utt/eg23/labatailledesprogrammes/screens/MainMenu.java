@@ -1,4 +1,7 @@
-package fr.utt.eg23.labattailledesprogrammes;
+package fr.utt.eg23.labatailledesprogrammes.screens;
+
+import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
