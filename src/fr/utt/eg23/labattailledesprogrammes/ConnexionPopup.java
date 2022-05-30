@@ -80,7 +80,7 @@ public class ConnexionPopup extends JDialog {
 		    }
 		});
 		
-		JButton okButton = new TextButton("Valider", 15f, () -> {});
+		JButton okButton = new TextButton("Valider", 15f, () -> {LaBatailleDesProgrammes.getInstance().switchPanel(new MainMenu());});
 		okButton.setBorder(new EmptyBorder(10, 10, 10, 20));
 		okButton.setActionCommand("OK");
 		buttonPane.add(okButton, BorderLayout.EAST);
