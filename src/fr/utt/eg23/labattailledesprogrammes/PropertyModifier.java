@@ -1,0 +1,49 @@
+package fr.utt.eg23.labattailledesprogrammes;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+
+public class PropertyModifier extends JPanel {
+
+    public PropertyModifier(FighterProperty property, FighterType fighterType) {
+        int min = property.getMin(fighterType);
+        int max = property.getMax();
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(GameCard.BACKGROUND_COLOR);
+
+        JLabel title = new JLabel(property.toString());
+        title.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(11f));
+        add(title);
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setBackground(GameCard.BACKGROUND_COLOR);
+        actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.X_AXIS));
+        add(actionPanel);
+
+        CustomProgressBar pb = new CustomProgressBar();
+        pb.setMinimum(0);
+        pb.setMaximum(max);
+        pb.setValue(min);
+        pb.setProgressColor(Color.ORANGE);
+        pb.setForeground(Color.BLACK);
+        actionPanel.add(pb);
+
+        TextButton buttonLess = new TextButton("-", 10f, () -> {
+            if (pb.getValue() > min)
+                pb.setValue(pb.getValue() - 1);
+        });
+        buttonLess.setBorder(new EmptyBorder(5, 5, 5, 3));
+        buttonLess.setForeground(Color.BLACK);
+        actionPanel.add(buttonLess);
+
+        TextButton buttonMore = new TextButton("+", 10f, () -> {
+            if (pb.getValue() < max)
+                pb.setValue(pb.getValue() + 1);
+        });
+        buttonMore.setBorder(new EmptyBorder(5, 3, 5, 5));
+        buttonMore.setForeground(Color.BLACK);
+        actionPanel.add(buttonMore);
+    }
+}

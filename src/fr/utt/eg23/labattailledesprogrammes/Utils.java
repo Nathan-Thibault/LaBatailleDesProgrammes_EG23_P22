@@ -11,7 +11,7 @@ public final class Utils {
     public static ImageIcon getImageToSize(String imageName, int width, int height) {
         try {
             BufferedImage buffImg = ImageIO.read(
-                    Objects.requireNonNull(LaBatailleDesProgrammes.class.getResource("/images/" + imageName)));
+                    Objects.requireNonNull(LaBatailleDesProgrammes.class.getResource("/resources/images/" + imageName)));
             Image img = buffImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             return new ImageIcon(img);
         } catch (IOException e) {

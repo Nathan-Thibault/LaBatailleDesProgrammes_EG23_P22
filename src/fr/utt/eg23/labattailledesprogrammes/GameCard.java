@@ -1,13 +1,12 @@
 package fr.utt.eg23.labattailledesprogrammes;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class GameCard extends JPanel {
-    private static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
-    private static final Dimension SIZE = new Dimension(150, 200);
+    public static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
+    private static final Dimension SIZE = new Dimension(200, 400);
 
     public GameCard(UTTBranch branch, FighterType fType) {
         String iconFileName = "icon_" + branch.getFileNameAffix() + "_" + fType.getFileNameAffix() + ".png";
@@ -36,28 +35,11 @@ public class GameCard extends JPanel {
         line.setBackground(null);
         add(line);
 
-        JPanel c = new JPanel();
-        c.setBackground(BACKGROUND_COLOR);
-        c.setLayout(new BoxLayout(c, BoxLayout.X_AXIS));
-        add(c);
-
-        CustomProgressBar pb = new CustomProgressBar();
-        pb.setMinimum(0);
-        pb.setMaximum(10);
-        pb.setValue(3);
-        pb.setProgressColor(Color.ORANGE);
-        pb.setForeground(Color.BLACK);
-        c.add(pb);
-
-        TextButton buttonLess = new TextButton("-", 10f, () -> pb.setValue(pb.getValue() - 1));
-        buttonLess.setBorder(new EmptyBorder(5,5,5,3));
-        buttonLess.setForeground(Color.BLACK);
-        c.add(buttonLess);
-        TextButton buttonMore = new TextButton("+", 10f, () -> pb.setValue(pb.getValue() + 1));
-        buttonMore.setBorder(new EmptyBorder(5,3,5,5));
-        buttonMore.setForeground(Color.BLACK);
-        c.add(buttonMore);
-
+        add(new PropertyModifier(FighterProperty.STRENGHT, fType));
+        add(new PropertyModifier(FighterProperty.CONSTITUTION, fType));
+        add(new PropertyModifier(FighterProperty.DEXTERITY, fType));
+        add(new PropertyModifier(FighterProperty.INITIATIVE, fType));
+        add(new PropertyModifier(FighterProperty.RESISTANCE, fType));
     }
 
     public static void main(String[] a) {
