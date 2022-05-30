@@ -14,11 +14,14 @@ public class PropertyModifier extends JPanel {
         setBackground(GameCard.BACKGROUND_COLOR);
 
         JLabel title = new JLabel(property.toString());
-        title.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(11f));
+        float fontSize = (float) (GameCard.SIZE.getHeight() * 0.03);
+        title.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(fontSize));
+        title.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         add(title);
 
         JPanel actionPanel = new JPanel();
         actionPanel.setBackground(GameCard.BACKGROUND_COLOR);
+        actionPanel.setBorder(new EmptyBorder(0, 2, 0, 0));
         actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.X_AXIS));
         add(actionPanel);
 
@@ -26,7 +29,7 @@ public class PropertyModifier extends JPanel {
         pb.setMinimum(0);
         pb.setMaximum(max);
         pb.setValue(min);
-        pb.setProgressColor(Color.ORANGE);
+        pb.setProgressColor(property.getColor());
         pb.setForeground(Color.BLACK);
         actionPanel.add(pb);
 

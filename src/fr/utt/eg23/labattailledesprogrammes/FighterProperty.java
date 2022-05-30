@@ -1,22 +1,26 @@
 package fr.utt.eg23.labattailledesprogrammes;
 
+import java.awt.*;
+
 public enum FighterProperty {
-    STRENGHT("Force", 1, 2, 10),
-    DEXTERITY("Dextérité", 1, 2, 10),
-    RESISTANCE("Résistance", 1, 2, 10),
-    CONSTITUTION("Constitution", 5, 10, 30),
-    INITIATIVE("Initiative", 1, 2, 10);
+    STRENGTH("Force", 1, 2, 10, Color.RED),
+    DEXTERITY("Dextérité", 1, 2, 10, Color.ORANGE),
+    RESISTANCE("Résistance", 1, 2, 10, Color.BLUE),
+    CONSTITUTION("Constitution", 5, 10, 30, Color.GREEN),
+    INITIATIVE("Initiative", 1, 2, 10, Color.MAGENTA);
 
     private final String name;
     private final int minEliteSoldier;
     private final int minMasterOfWar;
     private final int max;
+    private final Color color;
 
-    FighterProperty(String name, int minEliteSoldier, int minMasterOfWar, int max) {
+    FighterProperty(String name, int minEliteSoldier, int minMasterOfWar, int max, Color color) {
         this.name = name;
         this.minEliteSoldier = minEliteSoldier;
         this.minMasterOfWar = minMasterOfWar;
         this.max = max;
+        this.color = color;
     }
 
     @Override
@@ -34,5 +38,9 @@ public enum FighterProperty {
 
     public int getMax() {
         return max;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
