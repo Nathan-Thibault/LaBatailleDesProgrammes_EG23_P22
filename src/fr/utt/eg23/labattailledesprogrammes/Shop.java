@@ -12,24 +12,31 @@ public class Shop extends JPanel {
         setLayout(new BorderLayout());
         setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
+        //Le panel avec les 3 textes en haut.
         final JPanel panelHaut = new JPanel();
         panelHaut.setLayout(new BorderLayout());
         panelHaut.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
+        //Le panel principal avec les différentes branches.
         final JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(new GridLayout(3, 1));
+        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+        /*final JScrollPane scrollPane = new JScrollPane(panelPrincipal);
+        this.add(scrollPane, BorderLayout.CENTER);*/
+
 
         final TextButton btnQuitter = new TextButton("Retour", 30, () -> {
             LaBatailleDesProgrammes.getInstance().switchPanel(new MainMenu());
         });
         panelHaut.add(btnQuitter, BorderLayout.WEST);
 
+
         final JLabel titreBoutique = new JLabel("Boutique");
         titreBoutique.setHorizontalAlignment(JLabel.CENTER);
         titreBoutique.setForeground(Color.WHITE);
         titreBoutique.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(50f));
         panelHaut.add(titreBoutique, BorderLayout.CENTER);
+
 
         final JLabel argentRestant = new JLabel("Reste: 12€");
         argentRestant.setHorizontalAlignment(JLabel.CENTER);
@@ -38,44 +45,64 @@ public class Shop extends JPanel {
         argentRestant.setBorder(new EmptyBorder(0, 0, 0, 15));
         panelHaut.add(argentRestant, BorderLayout.EAST);
 
-
-        //ISI:
-
-
-        final JLabel labelIsi = new JLabel("Informatique et Systèmes d'Informations :");
-        labelIsi.setHorizontalAlignment(JLabel.LEFT);
-        labelIsi.setForeground(Color.WHITE);
-        labelIsi.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
-        labelIsi.setBorder(new EmptyBorder(0, 30, 0, 0));
-        panelPrincipal.add(labelIsi);
-
-        final JLabel barreBoutiqueISI = new JLabel();
-        barreBoutiqueISI.setIcon(Utils.getImageToSize("barreBoutique.png", 1050, 18));
-        barreBoutiqueISI.setBorder(new EmptyBorder(0, 30, 20, 0));
-        barreBoutiqueISI.setHorizontalAlignment(JLabel.LEFT);
-        panelPrincipal.add(barreBoutiqueISI);
-
-        final JPanel panelISI = new JPanel();
-        panelISI.setLayout(new FlowLayout(FlowLayout.LEADING));
-        panelISI.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
-        panelPrincipal.add(panelISI);
-
-        final JLabel emptyLabel = new JLabel();
-        emptyLabel.setBorder(new EmptyBorder(0, 23, 0, 0));
-        panelISI.add(emptyLabel);
-
-        final JLabel skinIsi1 = new JLabel();
-        skinIsi1.setIcon(Utils.getImageToSize("smartphone.png", 130, 130));
-        skinIsi1.setBorder(new MatteBorder(10, 10, 10, 10, Color.BLACK));
-        panelISI.add(skinIsi1);
-
-        final JLabel skinIsi2 = new JLabel();
-        skinIsi2.setIcon(Utils.getImageToSize("tablette.png", 130, 130));
-        skinIsi2.setBorder(new MatteBorder(10, 10, 10, 10, Color.BLACK));
-        panelISI.add(skinIsi2);
-
+        creerBranche("Informatique et Systèmes d'Informations", "smartphone.png", "tablette.png", panelPrincipal);
+        creerBranche("Automatique et Informatique Industrielle", "processeur.png", "robot.png", panelPrincipal);
+        //creerBranche("Réseaux et Télécommunications", "cloud.png", "server.png", panelPrincipal);
+        //creerBranche("Génie Mécanique", "presse.png", "engrenage.png", panelPrincipal);
+        //creerBranche("Matériaux, Technologie et Économie", "bitcoin.png", "materiaux.png", panelPrincipal);
+        //creerBranche("Génie Industriel", "calendrier.png", "optimisation.png", panelPrincipal);
 
         this.add(panelHaut, BorderLayout.NORTH);
         this.add(panelPrincipal, BorderLayout.CENTER);
+    }
+
+    private void creerBranche(String nom, String icone1, String icone2, JPanel panelPrincipal){
+        final JPanel panelBranche = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelBranche.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+
+
+        final JLabel labelBranche = new JLabel(nom + " :");
+        labelBranche.setHorizontalAlignment(JLabel.LEFT);
+        labelBranche.setForeground(Color.WHITE);
+        labelBranche.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
+        labelBranche.setBorder(new EmptyBorder(20, 30, 0, 0));
+        panelBranche.add(labelBranche);
+
+        final JLabel barreBoutique = new JLabel();
+        barreBoutique.setIcon(Utils.getImageToSize("barreBoutique.png", 1050, 18));
+        barreBoutique.setBorder(new EmptyBorder(10, 30, 20, 0));
+        barreBoutique.setHorizontalAlignment(JLabel.LEFT);
+        panelBranche.add(barreBoutique);
+
+        final JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        panel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+        panelBranche.add(panel);
+
+        final JLabel emptyLabel = new JLabel();
+        emptyLabel.setBorder(new EmptyBorder(0, 23, 0, 0));
+        panel.add(emptyLabel);
+
+        final JLabel skin1 = new JLabel();
+        skin1.setIcon(Utils.getImageToSize(icone1, 130, 130));
+        skin1.setBorder(new MatteBorder(10, 10, 10, 10, Color.BLACK));
+        panel.add(skin1);
+
+        final JLabel skin2 = new JLabel();
+        skin2.setIcon(Utils.getImageToSize(icone2, 130, 130));
+        skin2.setBorder(new MatteBorder(10, 10, 10, 10, Color.BLACK));
+        panel.add(skin2);
+
+        panelPrincipal.add(panelBranche);
+    }
+
+    public static void main(String[] a){
+        final JFrame frame = new JFrame("La Bataille des Programmes");
+        frame.setSize(LaBatailleDesProgrammes.FRAME_SIZE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new Shop());
+        frame.setVisible(true);
     }
 }
