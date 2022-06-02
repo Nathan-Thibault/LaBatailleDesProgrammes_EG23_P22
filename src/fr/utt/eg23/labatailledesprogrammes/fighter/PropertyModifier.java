@@ -6,6 +6,7 @@ import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class PropertyModifier extends JPanel {
@@ -34,6 +35,7 @@ public class PropertyModifier extends JPanel {
         pb.setMaximum(max);
         pb.setValue(min);
         pb.setProgressColor(property.getColor());
+        pb.setBorder(new LineBorder(Color.BLACK));
         pb.setForeground(Color.BLACK);
         actionPanel.add(pb);
 
