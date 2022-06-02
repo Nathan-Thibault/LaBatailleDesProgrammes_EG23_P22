@@ -6,6 +6,7 @@ import java.awt.*;
 //label with timer and modified paint() method to make text blinking
 public class BlinkLabel extends JLabel {
 
+    private boolean blinking = true;
     private boolean on = true;
     private int tCount = 0;
 
@@ -13,6 +14,9 @@ public class BlinkLabel extends JLabel {
         super(text);
 
         Timer timer = new Timer(timeInMillis, ae -> {
+            if (!blinking)
+                return;
+
             if (on && tCount == 0) {//make text appears only 2 timer loops out of 3
                 tCount++;
             } else {
@@ -36,5 +40,9 @@ public class BlinkLabel extends JLabel {
         }
         super.paint(g2d);
         g2d.dispose();
+    }
+
+    public void setBlinking(boolean blinking) {
+        this.blinking = blinking;
     }
 }
