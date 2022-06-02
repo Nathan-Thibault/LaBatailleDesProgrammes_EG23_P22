@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class GameCard extends JPanel {
     public static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
-    public static final Dimension SIZE = new Dimension(200, 340);
+    public static final Dimension SIZE = new Dimension(180, 340);
 
     public GameCard(UTTBranch branch, FighterType fType) {
         String iconFileName = "icon_" + branch.getFileNameAffix() + "_" + fType.getFileNameAffix() + ".png";
