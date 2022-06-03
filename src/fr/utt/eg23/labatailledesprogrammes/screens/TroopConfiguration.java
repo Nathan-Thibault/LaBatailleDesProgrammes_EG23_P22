@@ -2,9 +2,7 @@ package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.BlinkLabel;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.DropPanel;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.*;
 import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
 import fr.utt.eg23.labatailledesprogrammes.fighter.GameCard;
 
@@ -14,7 +12,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class TroopConfiguration extends JPanel {
 
@@ -101,51 +98,9 @@ public class TroopConfiguration extends JPanel {
         pointsBarPanel.add(pointsLabel);
         pointsBarPanel.add(pointsBar);
 
-        JLabel timeText = new JLabel("Temps restant: ");
-        timeText.setForeground(Color.WHITE);
-        timeText.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
+        JPanel timePanel = new TimerDisplay(120);
 
-        AtomicInteger secondsLeft = new AtomicInteger(70);
-        String str = String.format("%02d:%02d", (secondsLeft.get() % 3600) / 60, (secondsLeft.get() % 60));//mm:ss
-        BlinkLabel timeLeft = new BlinkLabel(str, 150);
-        timeLeft.setBlinking(false);
-        timeLeft.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        timeLeft.setForeground(Color.WHITE);
-        Timer timer = new Timer(1000, e -> {
-            secondsLeft.addAndGet(-1);
-            String s = String.format("%02d:%02d", (secondsLeft.get() % 3600) / 60, (secondsLeft.get() % 60));//mm:ss
-            if (secondsLeft.get() < 60 && !timeLeft.getForeground().equals(Color.RED)) {
-                timeLeft.setForeground(Color.RED);
-                timeLeft.setBlinking(true);
-            }
-
-            timeLeft.setText(s);
-            timeLeft.revalidate();
-            timeLeft.repaint();
-        });
-        timer.setRepeats(true);
-        timer.setCoalesce(true);
-        timer.start();
-
-        JPanel timePanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
-        timePanel.setBackground(null);
-        timePanel.add(timeText);
-        timePanel.add(timeLeft);
-
-        JCheckBox readyCheckBox = new JCheckBox();
-        readyCheckBox.setText("Êtes vous prêts ?");
-        readyCheckBox.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        readyCheckBox.setForeground(Color.WHITE);
-        readyCheckBox.setBackground(null);
-
-        JLabel opponentStatus = new JLabel("Votre adversaire n'est pas prêt...");
-        opponentStatus.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        opponentStatus.setForeground(Color.WHITE);
-
-        JPanel readyPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
-        readyPanel.setBackground(null);
-        readyPanel.add(readyCheckBox);
-        readyPanel.add(opponentStatus);
+        JPanel readyPanel = new ReadyPanel();
 
         leftPanel.add(titlePanel);
         leftPanel.add(pointsBarPanel);
