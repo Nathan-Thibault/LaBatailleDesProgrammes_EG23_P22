@@ -12,6 +12,9 @@ import java.awt.*;
 
 public class PropertyModifier extends JPanel {
 
+    private final TextButton buttonLess;
+    private final TextButton buttonMore;
+
     public PropertyModifier(FighterProperty property, FighterType fighterType) {
         int min = property.getMin(fighterType);
         int max = property.getMax();
@@ -27,7 +30,7 @@ public class PropertyModifier extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setBackground(GameCard.BACKGROUND_COLOR);
-        actionPanel.setBorder(new EmptyBorder(0, 2, 0, 0));
+        actionPanel.setBorder(new EmptyBorder(5, 2, 5, 2));
         actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.X_AXIS));
         add(actionPanel);
 
@@ -40,7 +43,7 @@ public class PropertyModifier extends JPanel {
         pb.setForeground(Color.BLACK);
         actionPanel.add(pb);
 
-        TextButton buttonLess = new TextButton("-", 10f, () -> {
+        buttonLess = new TextButton("-", 10f, () -> {
             if (pb.getValue() > min) {
                 pb.setValue(pb.getValue() - 1);
                 TroopConfiguration tc = LaBatailleDesProgrammes.getInstance().getTroopConfiguration();
@@ -48,11 +51,11 @@ public class PropertyModifier extends JPanel {
                     tc.addToPoints(+1);
             }
         });
-        buttonLess.setBorder(new EmptyBorder(5, 5, 5, 3));
+        buttonLess.setBorder(new EmptyBorder(0, 5, 0, 3));
         buttonLess.setForeground(Color.BLACK);
         actionPanel.add(buttonLess);
 
-        TextButton buttonMore = new TextButton("+", 10f, () -> {
+        buttonMore = new TextButton("+", 10f, () -> {
             if (pb.getValue() < max) {
                 pb.setValue(pb.getValue() + 1);
                 TroopConfiguration tc = LaBatailleDesProgrammes.getInstance().getTroopConfiguration();
@@ -60,8 +63,22 @@ public class PropertyModifier extends JPanel {
                     tc.addToPoints(-1);
             }
         });
-        buttonMore.setBorder(new EmptyBorder(5, 3, 5, 5));
+        buttonMore.setBorder(new EmptyBorder(0, 3, 0, 5));
         buttonMore.setForeground(Color.BLACK);
         actionPanel.add(buttonMore);
+    }
+
+    public void setModifiable(boolean modifiable) {
+        if (modifiable) {
+            buttonLess.setEnabled(true);
+            buttonLess.setVisible(true);
+            buttonMore.setEnabled(true);
+            buttonMore.setVisible(true);
+        } else {
+            buttonLess.setEnabled(false);
+            buttonLess.setVisible(false);
+            buttonMore.setEnabled(false);
+            buttonMore.setVisible(false);
+        }
     }
 }

@@ -11,10 +11,15 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragSource;
+import java.util.HashSet;
 
 public class GameCard extends JPanel {
     public static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
     public static final Dimension SIZE = new Dimension(180, 340);
+
+    private final HashSet<PropertyModifier> properties = new HashSet<>(FighterProperty.values().length);
+    private final JComboBox<String> strategyComboBox;
+    private final JLabel strategy = new JLabel();
 
     public GameCard(UTTBranch branch, FighterType fType) {
         //make draggable
@@ -49,7 +54,9 @@ public class GameCard extends JPanel {
         add(line);
 
         for (FighterProperty p : FighterProperty.values()) {
-            add(new PropertyModifier(p, fType));
+            PropertyModifier pm = new PropertyModifier(p, fType);
+            properties.add(pm);
+            add(pm);
         }
 
         //Strategy
@@ -60,11 +67,34 @@ public class GameCard extends JPanel {
         strategyLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         add(strategyLabel);
 
-        JComboBox<String> strategyComboBox = new JComboBox<>(new String[]{"Défensif", "Offensif", "Aléatoire"});
+        strategyComboBox = new JComboBox<>(new String[]{"Défensif", "Offensif", "Aléatoire"});
+        strategyComboBox.setEditable(false);
         strategyComboBox.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(Font.BOLD, fontSize));
         strategyComboBox.setBackground(BACKGROUND_COLOR);
         strategyComboBox.setBorder(new EmptyBorder(0, 20, 0, 20));
         strategyComboBox.setSelectedIndex(2);
         add(strategyComboBox);
+
+        strategy.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(Font.BOLD, fontSize * 1.2f));
+        strategy.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    public void setModifiable(boolean modifiable) {
+        for (PropertyModifier pm : properties) {
+            pm.setModifiable(modifiable);
+        }
+
+        if (modifiable) {
+            remove(strategy);
+            add(strategyComboBox);
+        } else {
+            strategy.setText((String) strategyComboBox.getSelectedItem());
+
+            remove(strategyComboBox);
+            add(strategy);
+        }
+
+        revalidate();
+        repaint();
     }
 }
