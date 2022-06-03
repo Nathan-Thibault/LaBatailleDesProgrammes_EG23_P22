@@ -4,6 +4,7 @@ import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.BlinkLabel;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.DropPanel;
 import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
 import fr.utt.eg23.labatailledesprogrammes.fighter.GameCard;
 
@@ -11,6 +12,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TroopConfiguration extends JPanel {
@@ -23,28 +26,24 @@ public class TroopConfiguration extends JPanel {
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
-        JPanel row0 = new JPanel();
-        row0.setLayout(new BoxLayout(row0, BoxLayout.X_AXIS));
+        JPanel row0 = new DropPanel(5);
+        row0.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
         row0.setBackground(null);
         row0.add(new GameCard(branch, FighterType.MASTER_OF_WAR));
         for (int i = 0; i < 4; i++) {
-            row0.add(Box.createRigidArea(new Dimension(3, 0)));//space between cards
             row0.add(new GameCard(branch, FighterType.ELITE_SOLDIER));
         }
-        row0.add(Box.createRigidArea(new Dimension(10, 0)));//end of row0 spacing
         cardsPanel.add(row0);
 
         //add 3 rows of 5 soldier
         for (int n = 1; n < 4; n++) {
-            JPanel rowN = new JPanel();
-            rowN.setLayout(new BoxLayout(rowN, BoxLayout.X_AXIS));
+            JPanel rowN = new DropPanel(5);
+            rowN.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
             rowN.setBackground(null);
+            rowN.setBorder(new EmptyBorder(3, 0, 0, 0));
             for (int i = 0; i < 5; i++) {
-                if (i > 0) rowN.add(Box.createRigidArea(new Dimension(3, 0)));//space between cards
                 rowN.add(new GameCard(branch, FighterType.SOLDIER));
             }
-            rowN.add(Box.createRigidArea(new Dimension(10, 0)));//end of rowN spacing
-            cardsPanel.add(Box.createRigidArea(new Dimension(0, 3)));//space between rows
             cardsPanel.add(rowN);
         }
 
@@ -153,9 +152,65 @@ public class TroopConfiguration extends JPanel {
         leftPanel.add(timePanel);
         leftPanel.add(readyPanel);
 
+        JSeparator line = new JSeparator();
+        line.setForeground(Color.BLACK);
+        line.setBackground(null);
+
+        JLabel reservistLabel = new JLabel("Réservistes: ");
+        reservistLabel.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
+        reservistLabel.setForeground(Color.WHITE);
+
+        JLabel reservistCount = new JLabel("0/5");
+        reservistCount.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
+        reservistCount.setForeground(Color.RED);
+
+        JPanel reservistText = new JPanel();
+        reservistText.setBackground(null);
+        reservistText.add(reservistLabel);
+        reservistText.add(reservistCount);
+
+        JPanel reservistDropPanel = new DropPanel(5);
+        reservistDropPanel.setBackground(null);
+        reservistDropPanel.setBorder(new LineBorder(Color.BLACK, 5));
+        reservistDropPanel.setPreferredSize(new Dimension(0, 80));
+        reservistDropPanel.addContainerListener(new ContainerListener() {
+            @Override
+            public void componentAdded(ContainerEvent e) {
+                updateContainer(e);
+            }
+
+            @Override
+            public void componentRemoved(ContainerEvent e) {
+                updateContainer(e);
+            }
+
+            private void updateContainer(ContainerEvent e) {
+                int n = e.getContainer().getComponentCount();
+
+                reservistCount.setText(n + "/5");
+                if (n == 5) {
+                    reservistCount.setForeground(Color.GREEN);
+                } else {
+                    reservistCount.setForeground(Color.RED);
+                }
+
+                reservistCount.revalidate();
+                reservistCount.repaint();
+            }
+        });
+
+        JPanel reservistPanel = new JPanel();
+        reservistPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+        reservistPanel.setLayout(new BoxLayout(reservistPanel, BoxLayout.Y_AXIS));
+        reservistPanel.setBorder(new EmptyBorder(3, 10, 2, 10));
+        reservistPanel.add(line);
+        reservistPanel.add(reservistText);
+        reservistPanel.add(reservistDropPanel);
+
         setLayout(new BorderLayout());
         add(leftPanel, BorderLayout.WEST);
         add(scrollPane, BorderLayout.CENTER);
+        add(reservistPanel, BorderLayout.SOUTH);
     }
 
     public void addToPoints(int addend) {
