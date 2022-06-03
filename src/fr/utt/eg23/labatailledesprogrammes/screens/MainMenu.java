@@ -1,6 +1,7 @@
 package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 
@@ -28,6 +29,9 @@ public class MainMenu extends JPanel {
 
         TextButton btnJouer = new TextButton("Jouer", 50, () -> {
             //TODO popup matchmaking
+            TroopConfiguration tc = new TroopConfiguration(UTTBranch.ISI);
+            LaBatailleDesProgrammes.getInstance().setTroopConfiguration(tc);
+            LaBatailleDesProgrammes.getInstance().switchPanel(tc);
         });
         btnJouer.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnJouer.setHorizontalAlignment(SwingConstants.LEFT);

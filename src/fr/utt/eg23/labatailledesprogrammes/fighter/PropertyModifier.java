@@ -3,9 +3,11 @@ package fr.utt.eg23.labatailledesprogrammes.fighter;
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
+import fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class PropertyModifier extends JPanel {
@@ -34,20 +36,29 @@ public class PropertyModifier extends JPanel {
         pb.setMaximum(max);
         pb.setValue(min);
         pb.setProgressColor(property.getColor());
+        pb.setBorder(new LineBorder(Color.BLACK));
         pb.setForeground(Color.BLACK);
         actionPanel.add(pb);
 
         TextButton buttonLess = new TextButton("-", 10f, () -> {
-            if (pb.getValue() > min)
+            if (pb.getValue() > min) {
                 pb.setValue(pb.getValue() - 1);
+                TroopConfiguration tc = LaBatailleDesProgrammes.getInstance().getTroopConfiguration();
+                if (tc != null)
+                    tc.addToPoints(+1);
+            }
         });
         buttonLess.setBorder(new EmptyBorder(5, 5, 5, 3));
         buttonLess.setForeground(Color.BLACK);
         actionPanel.add(buttonLess);
 
         TextButton buttonMore = new TextButton("+", 10f, () -> {
-            if (pb.getValue() < max)
+            if (pb.getValue() < max) {
                 pb.setValue(pb.getValue() + 1);
+                TroopConfiguration tc = LaBatailleDesProgrammes.getInstance().getTroopConfiguration();
+                if (tc != null)
+                    tc.addToPoints(-1);
+            }
         });
         buttonMore.setBorder(new EmptyBorder(5, 3, 5, 5));
         buttonMore.setForeground(Color.BLACK);

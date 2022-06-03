@@ -3,17 +3,24 @@ package fr.utt.eg23.labatailledesprogrammes.fighter;
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
+import fr.utt.eg23.labatailledesprogrammes.draganddrop.DragGestureHandler;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragSource;
 
 public class GameCard extends JPanel {
     public static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
-    public static final Dimension SIZE = new Dimension(200, 340);
+    public static final Dimension SIZE = new Dimension(180, 340);
 
     public GameCard(UTTBranch branch, FighterType fType) {
+        //make draggable
+        DragGestureHandler dragGestureHandler = new DragGestureHandler(this);
+        DragSource.getDefaultDragSource().createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, dragGestureHandler);
+
         String iconFileName = "icon_" + branch.getFileNameAffix() + "_" + fType.getFileNameAffix() + ".png";
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -41,11 +48,9 @@ public class GameCard extends JPanel {
         line.setBackground(null);
         add(line);
 
-        add(new PropertyModifier(FighterProperty.STRENGTH, fType));
-        add(new PropertyModifier(FighterProperty.CONSTITUTION, fType));
-        add(new PropertyModifier(FighterProperty.DEXTERITY, fType));
-        add(new PropertyModifier(FighterProperty.INITIATIVE, fType));
-        add(new PropertyModifier(FighterProperty.RESISTANCE, fType));
+        for (FighterProperty p : FighterProperty.values()) {
+            add(new PropertyModifier(p, fType));
+        }
 
         //Strategy
         fontSize = (float) (SIZE.getHeight() * 0.03);
