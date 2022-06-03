@@ -43,7 +43,7 @@ public class MainMenu extends JPanel {
         btnTutoriel.setHorizontalAlignment(SwingConstants.LEFT);
 
         TextButton btnBoutique = new TextButton("Boutique", 50, () -> {
-            //TODO fenetre Boutique
+            LaBatailleDesProgrammes.getInstance().switchPanel(new Shop());
         });
         btnBoutique.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnBoutique.setHorizontalAlignment(SwingConstants.LEFT);
