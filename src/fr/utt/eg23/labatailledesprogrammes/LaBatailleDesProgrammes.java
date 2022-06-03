@@ -1,6 +1,7 @@
 package fr.utt.eg23.labatailledesprogrammes;
 
 import fr.utt.eg23.labatailledesprogrammes.screens.TitleScreen;
+import fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,8 @@ public class LaBatailleDesProgrammes {
     public static final Color COLOR_BACKGROUND = new Color(55, 60, 72);
 	public static final Font GAME_FONT = new Font("Verdana Pro", Font.BOLD | Font.ITALIC, 15);
     public static final Dimension FRAME_SIZE = new Dimension(1280,720);
+
+    private TroopConfiguration troopConfiguration = null;
 
     public static LaBatailleDesProgrammes getInstance(){
         return instance;
@@ -48,5 +51,13 @@ public class LaBatailleDesProgrammes {
         frame.getContentPane().add(newPanel);
         frame.repaint();
         frame.revalidate();
+    }
+
+    public TroopConfiguration getTroopConfiguration() {
+        return troopConfiguration;
+    }
+
+    public void setTroopConfiguration(TroopConfiguration troopConfiguration) {
+        this.troopConfiguration = troopConfiguration;
     }
 }

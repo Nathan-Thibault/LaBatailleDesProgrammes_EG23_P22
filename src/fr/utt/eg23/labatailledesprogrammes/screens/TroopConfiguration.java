@@ -15,6 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TroopConfiguration extends JPanel {
 
+    private final JLabel pointsLabel;
+    private final CustomProgressBar pointsBar;
+
     public TroopConfiguration(UTTBranch branch) {
         JPanel cardsPanel = new JPanel();
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
@@ -78,12 +81,12 @@ public class TroopConfiguration extends JPanel {
         titlePanel.add(title1);
         titlePanel.add(title2);
 
-        JLabel pointsLabel = new JLabel("Points restants : 400");
+        pointsLabel = new JLabel("Points restants : 400");
         pointsLabel.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
         pointsLabel.setForeground(Color.WHITE);
         pointsLabel.setBackground(null);
 
-        CustomProgressBar pointsBar = new CustomProgressBar();
+        pointsBar = new CustomProgressBar();
         pointsBar.setMinimum(0);
         pointsBar.setMaximum(400);
         pointsBar.setValue(400);
@@ -153,6 +156,14 @@ public class TroopConfiguration extends JPanel {
         setLayout(new BorderLayout());
         add(leftPanel, BorderLayout.WEST);
         add(scrollPane, BorderLayout.CENTER);
+    }
+
+    public void addToPoints(int addend) {
+        int newValue = pointsBar.getValue() + addend;
+        pointsBar.setValue(newValue);
+        pointsLabel.setText("Points restants : " + newValue);
+        pointsLabel.revalidate();
+        pointsLabel.repaint();
     }
 
     public static void main(String[] a) {

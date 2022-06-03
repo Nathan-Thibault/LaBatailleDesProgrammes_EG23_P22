@@ -41,11 +41,9 @@ public class GameCard extends JPanel {
         line.setBackground(null);
         add(line);
 
-        add(new PropertyModifier(FighterProperty.STRENGTH, fType));
-        add(new PropertyModifier(FighterProperty.CONSTITUTION, fType));
-        add(new PropertyModifier(FighterProperty.DEXTERITY, fType));
-        add(new PropertyModifier(FighterProperty.INITIATIVE, fType));
-        add(new PropertyModifier(FighterProperty.RESISTANCE, fType));
+        for(FighterProperty p : FighterProperty.values()){
+            add(new PropertyModifier(p, fType));
+        }
 
         //Strategy
         fontSize = (float) (SIZE.getHeight() * 0.03);
