@@ -1,20 +1,22 @@
 package fr.utt.eg23.labatailledesprogrammes;
 
 public enum UTTBranch {
-    ISI("Informatique et Système d'Information", "isi"),
-    RT("Réseaux et Télécomunications", "rt"),
-    A2I("Automatique et Informatique Industrielle", "a2i"),
-    GM("Génie Mécanique", "gm"),
-    MTE("Matériaux : Technologie et Économie", "mte"),
-    MM("Matériaux et Mécanique", "mm"),
-    GI("Génie Industriel", "gi");
+    ISI("Informatique et Système d'Information", "isi", new String[]{"smartphone.png", "tablette.png"}),
+    RT("Réseaux et Télécomunications", "rt", new String[]{"cloud.png", "server.png"}),
+    A2I("Automatique et Informatique Industrielle", "a2i", new String[]{"processeur.png", "robot.png"}),
+    GM("Génie Mécanique", "gm", new String[]{"presse.png", "engrenage.png"}),
+    MTE("Matériaux : Technologie et Économie", "mte", new String[]{"bitcoin.png", "materiaux.png"}),
+    MM("Matériaux et Mécanique", "mm", new String[]{}),
+    GI("Génie Industriel", "gi", new String[]{"calendrier.png", "optimisation.png"});
 
     private final String name;
     private final String fileNameAffix;
+    private final String[] skinsFileNames;
 
-    UTTBranch(String name, String fileNameAffix) {
+    UTTBranch(String name, String fileNameAffix, String[] skinsFileNames) {
         this.name = name;
         this.fileNameAffix = fileNameAffix;
+        this.skinsFileNames = skinsFileNames;
     }
 
     @Override
@@ -24,5 +26,9 @@ public enum UTTBranch {
 
     public String getFileNameAffix() {
         return fileNameAffix;
+    }
+
+    public String[] getSkinsFileNames() {
+        return skinsFileNames;
     }
 }

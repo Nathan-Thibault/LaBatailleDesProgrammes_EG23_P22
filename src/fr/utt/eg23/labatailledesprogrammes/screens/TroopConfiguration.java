@@ -220,14 +220,4 @@ public class TroopConfiguration extends JPanel {
         pointsLabel.revalidate();
         pointsLabel.repaint();
     }
-
-    public static void main(String[] a) {
-        JFrame frame = new JFrame();
-        TroopConfiguration tc = new TroopConfiguration(UTTBranch.ISI);
-        frame.getContentPane().add(tc);
-        frame.setSize(LaBatailleDesProgrammes.FRAME_SIZE);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
