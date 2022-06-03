@@ -87,7 +87,10 @@ public class ConnexionPopup extends JDialog {
 
         //TODO: add inscription text
 
-        JButton okButton = new TextButton("Valider", 15f, () -> LaBatailleDesProgrammes.getInstance().switchPanel(new MainMenu()));
+        JButton okButton = new TextButton("Valider", 15f, () -> {
+            LaBatailleDesProgrammes.getInstance().switchPanel(new MainMenu());
+            this.dispose();
+        });
         okButton.setBorder(new EmptyBorder(10, 10, 10, 20));
         okButton.setActionCommand("OK");
         buttonPane.add(okButton, BorderLayout.EAST);
