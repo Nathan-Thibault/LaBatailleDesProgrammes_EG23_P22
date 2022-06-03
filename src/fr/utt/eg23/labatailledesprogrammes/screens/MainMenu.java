@@ -3,10 +3,14 @@ package fr.utt.eg23.labatailledesprogrammes.screens;
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
+import fr.utt.eg23.labatailledesprogrammes.popups.ConnexionPopup;
+import fr.utt.eg23.labatailledesprogrammes.popups.ParameterPopup;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenu extends JPanel {
 
@@ -58,6 +62,14 @@ public class MainMenu extends JPanel {
         btnSettings.setIcon(Utils.getImageToSize("settings.png", 100, 60));
         btnSettings.setBackground(null);
         btnSettings.setBorder(new EmptyBorder(10, 50, 10, 0));
+        btnSettings.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ParameterPopup dialog = new ParameterPopup();
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setAlwaysOnTop(true);
+            }
+        });
 
         this.add(labelImageMenu, BorderLayout.CENTER);
         panelButtons.add(btnJouer);
