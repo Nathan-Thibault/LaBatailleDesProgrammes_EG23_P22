@@ -21,8 +21,7 @@ public class Shop extends JPanel {
         final JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
-        /*final JScrollPane scrollPane = new JScrollPane(panelPrincipal);
-        this.add(scrollPane, BorderLayout.CENTER);*/
+
 
 
         final TextButton btnQuitter = new TextButton("Retour", 30, () -> {
@@ -47,31 +46,40 @@ public class Shop extends JPanel {
 
         creerBranche("Informatique et Systèmes d'Informations", "smartphone.png", "tablette.png", panelPrincipal);
         creerBranche("Automatique et Informatique Industrielle", "processeur.png", "robot.png", panelPrincipal);
-        //creerBranche("Réseaux et Télécommunications", "cloud.png", "server.png", panelPrincipal);
-        //creerBranche("Génie Mécanique", "presse.png", "engrenage.png", panelPrincipal);
-        //creerBranche("Matériaux, Technologie et Économie", "bitcoin.png", "materiaux.png", panelPrincipal);
-        //creerBranche("Génie Industriel", "calendrier.png", "optimisation.png", panelPrincipal);
+        creerBranche("Réseaux et Télécommunications", "cloud.png", "server.png", panelPrincipal);
+        creerBranche("Génie Mécanique", "presse.png", "engrenage.png", panelPrincipal);
+        creerBranche("Matériaux, Technologie et Économie", "bitcoin.png", "materiaux.png", panelPrincipal);
+        creerBranche("Génie Industriel", "calendrier.png", "optimisation.png", panelPrincipal);
 
         this.add(panelHaut, BorderLayout.NORTH);
-        this.add(panelPrincipal, BorderLayout.CENTER);
+        //this.add(panelPrincipal, BorderLayout.CENTER);
+
+        final JScrollPane scrollPane = new JScrollPane(panelPrincipal);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        this.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setBorder(null);
     }
 
     private void creerBranche(String nom, String icone1, String icone2, JPanel panelPrincipal){
-        final JPanel panelBranche = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        final JPanel panelBranche = new JPanel();
+        panelBranche.setLayout(new BoxLayout(panelBranche, BoxLayout.Y_AXIS));
+//        panelBranche.setAlignmentX(Component.LEFT_ALIGNMENT);
         panelBranche.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
 
+
         final JLabel labelBranche = new JLabel(nom + " :");
-        labelBranche.setHorizontalAlignment(JLabel.LEFT);
         labelBranche.setForeground(Color.WHITE);
+        labelBranche.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelBranche.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
-        labelBranche.setBorder(new EmptyBorder(20, 30, 0, 0));
+        labelBranche.setBorder(new EmptyBorder(20, 0, 0, 0));
         panelBranche.add(labelBranche);
 
         final JLabel barreBoutique = new JLabel();
+        barreBoutique.setAlignmentX(Component.LEFT_ALIGNMENT);
         barreBoutique.setIcon(Utils.getImageToSize("barreBoutique.png", 1050, 18));
-        barreBoutique.setBorder(new EmptyBorder(10, 30, 20, 0));
-        barreBoutique.setHorizontalAlignment(JLabel.LEFT);
+        barreBoutique.setBorder(new EmptyBorder(10, 0, 20, 0));
         panelBranche.add(barreBoutique);
 
         final JPanel panel = new JPanel();
@@ -79,9 +87,7 @@ public class Shop extends JPanel {
         panel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
         panelBranche.add(panel);
 
-        final JLabel emptyLabel = new JLabel();
-        emptyLabel.setBorder(new EmptyBorder(0, 23, 0, 0));
-        panel.add(emptyLabel);
+        panel.add(Box.createRigidArea(new Dimension(23, 0)));
 
         final JLabel skin1 = new JLabel();
         skin1.setIcon(Utils.getImageToSize(icone1, 130, 130));
