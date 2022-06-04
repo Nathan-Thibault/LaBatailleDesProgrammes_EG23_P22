@@ -12,13 +12,19 @@ public class LaBatailleDesProgrammes {
 
     private static LaBatailleDesProgrammes instance;
 
-    public static final Color COLOR_BACKGROUND = new Color(55, 60, 72);
-	public static final Font GAME_FONT = new Font("Verdana Pro", Font.BOLD | Font.ITALIC, 15);
-    public static final Dimension FRAME_SIZE = new Dimension(1280,720);
+    public static final Color COLOR_BACKGROUND = new Color(0x373C48);
+    public static final Color BLUE = new Color(0x636DD0);
+    public static final Color ORANGE = new Color(0xC48C5D);
+    public static final Color GREEN = new Color(0x6BCA63);
+    public static final Color RED = new Color(0xC65165);
+    public static final Color PINK = new Color(0xC688CF);
+
+    public static final Font GAME_FONT = new Font("Verdana Pro", Font.BOLD | Font.ITALIC, 15);
+    public static final Dimension FRAME_SIZE = new Dimension(1280, 720);
 
     private TroopConfiguration troopConfiguration = null;
 
-    public static LaBatailleDesProgrammes getInstance(){
+    public static LaBatailleDesProgrammes getInstance() {
         return instance;
     }
 
