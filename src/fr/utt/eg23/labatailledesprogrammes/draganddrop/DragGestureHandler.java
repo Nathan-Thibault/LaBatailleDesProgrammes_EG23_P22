@@ -2,6 +2,7 @@ package fr.utt.eg23.labatailledesprogrammes.draganddrop;
 
 import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
+import fr.utt.eg23.labatailledesprogrammes.card.OtherCardForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,11 +76,11 @@ public class DragGestureHandler implements DragGestureListener, DragSourceListen
             getParent().add(getPanel());
         } else {
             if (getPanel() instanceof GameCard gameCard) {
-                MinimizedCard m = gameCard.getMinimized();
-                if (m != null) {
-                    m.disposeFrame();
-                    Container mParent = m.getParent();
-                    mParent.remove(m);
+                OtherCardForm cf = gameCard.getOtherForm();
+                if (cf != null) {
+                    cf.disposeFrame();
+                    Container mParent = cf.getParent();
+                    mParent.remove(cf);
                     mParent.revalidate();
                     mParent.repaint();
                 }

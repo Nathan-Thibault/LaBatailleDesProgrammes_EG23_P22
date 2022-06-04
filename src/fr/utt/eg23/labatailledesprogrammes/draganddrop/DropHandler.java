@@ -1,5 +1,6 @@
 package fr.utt.eg23.labatailledesprogrammes.draganddrop;
 
+import fr.utt.eg23.labatailledesprogrammes.card.DotCard;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.CardDropPanel;
 import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
@@ -58,12 +59,12 @@ public class DropHandler implements DropTargetListener, Serializable {
                             parent.repaint();
                         }
                         if (panel instanceof GameCard gameCard) {
-                            gameCard.setMinimized(null);
+                            gameCard.setOtherForm(null);
                             if(component instanceof CardDropPanel cardDropPanel){
                                 switch (cardDropPanel.getCardForm()){
                                     case FULL -> component.add(gameCard);
                                     case MINIMIZED -> component.add(new MinimizedCard(gameCard));
-                                    //TODO case DOT ->
+                                    case DOT -> component.add(new DotCard(gameCard));
                                 }
                             }
                         }else component.add(panel);

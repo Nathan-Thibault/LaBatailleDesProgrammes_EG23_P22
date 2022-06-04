@@ -29,7 +29,7 @@ public class GameCard extends JPanel {
     private final JComboBox<String> strategyComboBox;
     private final JLabel strategy = new JLabel();
 
-    private MinimizedCard minimizedThis = null;
+    private OtherCardForm otherForm = null;
 
     public GameCard(UTTBranch branch, FighterType fType) {
         this.branch = branch;
@@ -117,11 +117,11 @@ public class GameCard extends JPanel {
         return fType;
     }
 
-    public MinimizedCard getMinimized() {
-        return this.minimizedThis;
+    public OtherCardForm getOtherForm() {
+        return this.otherForm;
     }
 
-    public void setMinimized(MinimizedCard minimizedCard) {
-        this.minimizedThis = minimizedCard;
+    public void setOtherForm(OtherCardForm otherForm) {
+        this.otherForm = otherForm;
     }
 }
