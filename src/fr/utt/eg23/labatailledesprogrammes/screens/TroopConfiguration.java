@@ -2,9 +2,10 @@ package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
+import fr.utt.eg23.labatailledesprogrammes.card.CardForm;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.*;
 import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
-import fr.utt.eg23.labatailledesprogrammes.fighter.GameCard;
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -23,7 +24,7 @@ public class TroopConfiguration extends JPanel {
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
-        JPanel row0 = new DropPanel(5);
+        JPanel row0 = new CardDropPanel(5, CardForm.FULL);
         row0.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
         row0.setBackground(null);
         row0.add(new GameCard(branch, FighterType.MASTER_OF_WAR));
@@ -34,7 +35,7 @@ public class TroopConfiguration extends JPanel {
 
         //add 3 rows of 5 soldier
         for (int n = 1; n < 4; n++) {
-            JPanel rowN = new DropPanel(5);
+            JPanel rowN = new CardDropPanel(5, CardForm.FULL);
             rowN.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
             rowN.setBackground(null);
             rowN.setBorder(new EmptyBorder(3, 0, 0, 0));
@@ -124,7 +125,7 @@ public class TroopConfiguration extends JPanel {
         reservistText.add(reservistLabel);
         reservistText.add(reservistCount);
 
-        JPanel reservistDropPanel = new DropPanel(5);
+        JPanel reservistDropPanel = new CardDropPanel(5, CardForm.MINIMIZED);
         reservistDropPanel.setBackground(null);
         reservistDropPanel.setBorder(new LineBorder(Color.BLACK, 5));
         reservistDropPanel.setPreferredSize(new Dimension(0, 80));

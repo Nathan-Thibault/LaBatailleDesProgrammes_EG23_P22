@@ -1,6 +1,7 @@
 package fr.utt.eg23.labatailledesprogrammes.fighter;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
 import fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration;
