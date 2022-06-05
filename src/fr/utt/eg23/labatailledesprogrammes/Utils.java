@@ -19,4 +19,15 @@ public final class Utils {
             return null;
         }
     }
+
+    public static BufferedImage resize(BufferedImage img, int newWidth, int newHeight) {
+        Image tmp = img.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        BufferedImage bufImg = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = bufImg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+
+        return bufImg;
+    }
 }
