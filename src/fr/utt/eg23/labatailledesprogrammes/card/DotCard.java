@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DotCard extends OtherCardForm {
-    private static final Dimension defaultSize = new Dimension(50, 50);
+    public static final Dimension DEFAULT_SIZE = new Dimension(50, 50);
 
     private final FighterType fType;
 
@@ -20,7 +20,7 @@ public class DotCard extends OtherCardForm {
         super(original);
 
         fType = original.getFighterType();
-        setPreferredSize(defaultSize);
+        setPreferredSize(DEFAULT_SIZE);
     }
 
     @Override
