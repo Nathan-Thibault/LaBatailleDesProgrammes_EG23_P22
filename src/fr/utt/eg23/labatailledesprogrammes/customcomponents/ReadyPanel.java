@@ -9,12 +9,16 @@ public class ReadyPanel extends JPanel {
 
     private final JLabel opponentStatus;
 
-    public ReadyPanel() {
+    public ReadyPanel(Runnable onChecked) {
         JCheckBox readyCheckBox = new JCheckBox();
         readyCheckBox.setText("Êtes vous prêts ?");
         readyCheckBox.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
         readyCheckBox.setForeground(Color.WHITE);
         readyCheckBox.setBackground(null);
+        readyCheckBox.addActionListener(e -> {
+            if (readyCheckBox.isSelected()) onChecked.run();
+        });
+
         //TODO : custom checkbox graphics ?
 
         opponentStatus = new JLabel("Votre adversaire n'est pas prêt...");

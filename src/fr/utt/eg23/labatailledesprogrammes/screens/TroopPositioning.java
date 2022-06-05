@@ -1,23 +1,21 @@
 package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
-import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.card.CardForm;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.*;
-import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
 import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Set;
 
 public class TroopPositioning extends BackgroundPanel {
 
     private static final int areaWidth = 145;
     private static final int areaHeight = 80;
-    private static JFrame frame;
 
-    public TroopPositioning() {
+    public TroopPositioning(Set<GameCard> cardSet) {
         setLayout(null);
         setBackground("troop_positioning_bg.png");
 
@@ -46,9 +44,9 @@ public class TroopPositioning extends BackgroundPanel {
         blueArea.setBounds(387, 430, areaWidth, areaHeight);
         add(blueArea);
 
-        JPanel timePanel = new TimerDisplay(120);
+        JPanel timePanel = new TimerDisplay(120, null);
 
-        ReadyPanel readyPanel = new ReadyPanel();
+        ReadyPanel readyPanel = new ReadyPanel(null);
         readyPanel.setOpponentReady(true);
 
         JPanel infosPanel = new JPanel();
@@ -68,8 +66,7 @@ public class TroopPositioning extends BackgroundPanel {
         JPanel cardsPanel = new CardDropPanel(20, CardForm.MINIMIZED);
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
         cardsPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 3));
-        for (int i = 0; i < 3; i++) {
-            GameCard gc = new GameCard(UTTBranch.ISI, FighterType.SOLDIER);
+        for (GameCard gc : cardSet) {
             gc.setModifiable(false);
             cardsPanel.add(new MinimizedCard(gc));
         }
@@ -82,18 +79,5 @@ public class TroopPositioning extends BackgroundPanel {
         scrollPane.setBounds(0, (int) LaBatailleDesProgrammes.FRAME_SIZE.getHeight() - height - 40,
                 (int) LaBatailleDesProgrammes.FRAME_SIZE.getWidth() - 17, height);
         add(scrollPane);
-    }
-
-    public static void main(String[] a) {
-        frame = new JFrame();
-        frame.setSize(LaBatailleDesProgrammes.FRAME_SIZE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        TroopPositioning tp = new TroopPositioning();
-        frame.getContentPane().add(tp);
-
-        frame.setVisible(true);
     }
 }

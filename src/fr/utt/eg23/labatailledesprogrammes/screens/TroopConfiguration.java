@@ -13,11 +13,15 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TroopConfiguration extends JPanel {
 
     private final JLabel pointsLabel;
     private final CustomProgressBar pointsBar;
+
+    private final Set<GameCard> cardSet = new HashSet<>(20);
 
     public TroopConfiguration(UTTBranch branch) {
         JPanel cardsPanel = new JPanel();
@@ -27,9 +31,13 @@ public class TroopConfiguration extends JPanel {
         JPanel row0 = new CardDropPanel(5, CardForm.FULL);
         row0.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
         row0.setBackground(null);
-        row0.add(new GameCard(branch, FighterType.MASTER_OF_WAR));
+        GameCard mow = new GameCard(branch, FighterType.MASTER_OF_WAR);
+        cardSet.add(mow);
+        row0.add(mow);
         for (int i = 0; i < 4; i++) {
-            row0.add(new GameCard(branch, FighterType.ELITE_SOLDIER));
+            GameCard es = new GameCard(branch, FighterType.ELITE_SOLDIER);
+            cardSet.add(es);
+            row0.add(es);
         }
         cardsPanel.add(row0);
 
@@ -40,7 +48,9 @@ public class TroopConfiguration extends JPanel {
             rowN.setBackground(null);
             rowN.setBorder(new EmptyBorder(3, 0, 0, 0));
             for (int i = 0; i < 5; i++) {
-                rowN.add(new GameCard(branch, FighterType.SOLDIER));
+                GameCard s = new GameCard(branch, FighterType.SOLDIER);
+                cardSet.add(s);
+                rowN.add(s);
             }
             cardsPanel.add(rowN);
         }
@@ -99,9 +109,9 @@ public class TroopConfiguration extends JPanel {
         pointsBarPanel.add(pointsLabel);
         pointsBarPanel.add(pointsBar);
 
-        JPanel timePanel = new TimerDisplay(120);
+        JPanel timePanel = new TimerDisplay(180, () -> LaBatailleDesProgrammes.getInstance().switchPanel(new TroopPositioning(cardSet)));
 
-        JPanel readyPanel = new ReadyPanel();
+        JPanel readyPanel = new ReadyPanel(() -> LaBatailleDesProgrammes.getInstance().switchPanel(new TroopPositioning(cardSet)));
 
         leftPanel.add(titlePanel);
         leftPanel.add(pointsBarPanel);

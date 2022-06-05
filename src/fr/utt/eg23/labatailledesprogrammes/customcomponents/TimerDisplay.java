@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TimerDisplay extends JPanel {
-    public TimerDisplay(int timeInSeconds){
+    public TimerDisplay(int timeInSeconds, Runnable onEnd) {
         JLabel timeText = new JLabel("Temps restant: ");
         timeText.setForeground(Color.WHITE);
         timeText.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
@@ -18,7 +18,7 @@ public class TimerDisplay extends JPanel {
         timeLeft.setBlinking(false);
         timeLeft.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
         timeLeft.setForeground(Color.WHITE);
-        Timer timer = new Timer(1000, e -> {
+        final Timer timer = new Timer(1000, e -> {
             secondsLeft.addAndGet(-1);
             String s = String.format("%02d:%02d", (secondsLeft.get() % 3600) / 60, (secondsLeft.get() % 60));//mm:ss
             if (secondsLeft.get() < 60 && !timeLeft.getForeground().equals(Color.RED)) {
@@ -29,6 +29,11 @@ public class TimerDisplay extends JPanel {
             timeLeft.setText(s);
             timeLeft.revalidate();
             timeLeft.repaint();
+
+            if (secondsLeft.get() <= 0) {
+                ((Timer) e.getSource()).stop();
+                onEnd.run();
+            }
         });
         timer.setRepeats(true);
         timer.setCoalesce(true);
