@@ -5,6 +5,7 @@ import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 import fr.utt.eg23.labatailledesprogrammes.popups.ConnexionPopup;
+import fr.utt.eg23.labatailledesprogrammes.popups.MatchmakingPopup;
 import fr.utt.eg23.labatailledesprogrammes.popups.ParameterPopup;
 
 import javax.swing.*;
@@ -31,12 +32,7 @@ public class MainMenu extends JPanel {
         JLabel labelImageMenu = new JLabel();
         labelImageMenu.setIcon(Utils.getImageToSize("EcranMenu.png", 804, 695));
 
-        TextButton btnJouer = new TextButton("Jouer", 50, () -> {
-            //TODO popup matchmaking
-            TroopConfiguration tc = new TroopConfiguration(UTTBranch.ISI);
-            LaBatailleDesProgrammes.getInstance().setTroopConfiguration(tc);
-            LaBatailleDesProgrammes.getInstance().switchPanel(tc);
-        });
+        TextButton btnJouer = new TextButton("Jouer", 50, MatchmakingPopup::new);
         btnJouer.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnJouer.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -46,9 +42,7 @@ public class MainMenu extends JPanel {
         btnTutoriel.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnTutoriel.setHorizontalAlignment(SwingConstants.LEFT);
 
-        TextButton btnBoutique = new TextButton("Boutique", 50, () -> {
-            LaBatailleDesProgrammes.getInstance().switchPanel(new Shop());
-        });
+        TextButton btnBoutique = new TextButton("Boutique", 50, () -> LaBatailleDesProgrammes.getInstance().switchPanel(new Shop()));
         btnBoutique.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -66,14 +60,7 @@ public class MainMenu extends JPanel {
         btnSettings.setIcon(Utils.getImageToSize("settings.png", 100, 60));
         btnSettings.setBackground(null);
         btnSettings.setBorder(new EmptyBorder(10, 50, 10, 0));
-        btnSettings.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ParameterPopup dialog = new ParameterPopup();
-                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                dialog.setVisible(true);
-                dialog.setAlwaysOnTop(true);
-            }
-        });
+        btnSettings.addActionListener(e -> new ParameterPopup());
 
         this.add(labelImageMenu, BorderLayout.CENTER);
         panelButtons.add(btnJouer);

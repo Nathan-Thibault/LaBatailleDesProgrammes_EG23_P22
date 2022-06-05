@@ -21,9 +21,7 @@ public class ReadyPanel extends JPanel {
 
         //TODO : custom checkbox graphics ?
 
-        opponentStatus = new JLabel("Votre adversaire n'est pas prêt...");
-        opponentStatus.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        opponentStatus.setForeground(Color.WHITE);
+        opponentStatus = new DefaultLabel("Votre adversaire n'est pas prêt...");
 
         setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
         setBackground(null);

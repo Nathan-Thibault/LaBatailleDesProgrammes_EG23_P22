@@ -1,21 +1,24 @@
 package fr.utt.eg23.labatailledesprogrammes.popups;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.DefaultLabel;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
-import fr.utt.eg23.labatailledesprogrammes.screens.MainMenu;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.font.TextAttribute;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ParameterPopup extends JDialog {
 
     public ParameterPopup() {
-        setBounds(100, 100, 550, 200);
+        Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        int width = 550;
+        int height = 200;
+        setBounds(center.x - (width / 2), center.y - (height / 2), width, height);
         setTitle("Paramètres");
+        setResizable(false);
+        setAlwaysOnTop(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
         JPanel contentPanel = new JPanel();
@@ -24,66 +27,58 @@ public class ParameterPopup extends JDialog {
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
         getContentPane().add(contentPanel);
 
-        JPanel panelGauche = new JPanel();
-        panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
-        panelGauche.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
-        contentPanel.add(panelGauche);
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+        contentPanel.add(leftPanel);
 
-        JLabel labelAudio = new JLabel("Volume audio");
-        labelAudio.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        labelAudio.setForeground(Color.WHITE);
-        panelGauche.add(labelAudio);
+        JLabel audioLabel = new DefaultLabel("Volume audio:");
+        audioLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        leftPanel.add(audioLabel);
 
-        panelGauche.add(Box.createRigidArea(new Dimension(0, 15)));
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        JLabel labelResolution = new JLabel("Résolution");
-        labelResolution.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        labelResolution.setForeground(Color.WHITE);
-        panelGauche.add(labelResolution);
+        JLabel resolutionLabel = new DefaultLabel("Résolution:");
+        resolutionLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        leftPanel.add(resolutionLabel);
 
-        panelGauche.add(Box.createRigidArea(new Dimension(0, 15)));
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        JLabel labelLangue = new JLabel("Langage");
-        labelLangue.setForeground(Color.WHITE);
-        labelLangue.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        panelGauche.add(labelLangue);
+        JLabel langageLabel = new DefaultLabel("Langue:");
+        langageLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        leftPanel.add(langageLabel);
 
-        JPanel panelDroite = new JPanel();
-        panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
-        panelDroite.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
-        contentPanel.add(panelDroite);
-        panelDroite.setBorder(new EmptyBorder(0,25, 0, 0));
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
+        contentPanel.add(rightPanel);
+        rightPanel.setBorder(new EmptyBorder(0, 25, 0, 0));
 
         JSlider slider = new JSlider();
         slider.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
-        slider.setBounds(0, 0, 80, 20);
-        panelDroite.add(slider);
-
-        //panelDroite.add(Box.createRigidArea(new Dimension(0, 15)));
+        rightPanel.add(slider);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
         String[] optionsToChooseR = {"1080p", "720p", "360p", "144p"};
-        JComboBox comboBoxResolution = new JComboBox<>(optionsToChooseR);
-        comboBoxResolution.setPreferredSize(new Dimension(80, 20));
-        panelDroite.add(comboBoxResolution);
+        JComboBox<String> comboBoxResolution = new JComboBox<>(optionsToChooseR);
+        rightPanel.add(comboBoxResolution);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        String[] optionsToChooseL = {"Français", "English", "Deutsch", "Espanol"};
-        JComboBox comboBoxLangage = new JComboBox<>(optionsToChooseL);
-        comboBoxLangage.setPreferredSize(new Dimension(80, 20));
-        panelDroite.add(comboBoxLangage);
-
-
-
+        String[] optionsToChooseL = {"Français", "English", "Deutsch", "Español"};
+        JComboBox<String> comboBoxLangage = new JComboBox<>(optionsToChooseL);
+        rightPanel.add(comboBoxLangage);
 
         JPanel buttonPane = new JPanel();
         buttonPane.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
         buttonPane.setLayout(new BorderLayout());
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
-
-        JButton okButton = new TextButton("Valider", 15f, () -> this.dispose());
+        JButton okButton = new TextButton("Valider", 15f, this::dispose);
         okButton.setBorder(new EmptyBorder(10, 10, 10, 20));
         okButton.setActionCommand("OK");
         buttonPane.add(okButton, BorderLayout.EAST);
         getRootPane().setDefaultButton(okButton);
+
+        setVisible(true);
     }
 }

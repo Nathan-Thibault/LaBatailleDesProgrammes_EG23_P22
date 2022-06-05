@@ -3,6 +3,7 @@ package fr.utt.eg23.labatailledesprogrammes.screens;
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.DefaultLabel;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 
 import javax.swing.*;
@@ -29,17 +30,13 @@ public class Shop extends JPanel {
         northPanel.add(returnButton, BorderLayout.WEST);
 
 
-        final JLabel title = new JLabel("Boutique");
+        final JLabel title = new DefaultLabel("Boutique", 50f);
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setForeground(Color.WHITE);
-        title.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(50f));
         northPanel.add(title, BorderLayout.CENTER);
 
 
-        final JLabel moneyLeft = new JLabel("Reste: 12€");
+        final JLabel moneyLeft = new DefaultLabel("Reste: 12€", 30f);
         moneyLeft.setHorizontalAlignment(JLabel.CENTER);
-        moneyLeft.setForeground(Color.WHITE);
-        moneyLeft.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
         moneyLeft.setBorder(new EmptyBorder(0, 0, 0, 15));
         northPanel.add(moneyLeft, BorderLayout.EAST);
 
@@ -61,14 +58,10 @@ public class Shop extends JPanel {
         branchPanel.setLayout(new BoxLayout(branchPanel, BoxLayout.Y_AXIS));
         branchPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
-        final JLabel labelBranche = new JLabel(branch + " :");
-        labelBranche.setForeground(Color.WHITE);
-        labelBranche.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
-
         final JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         labelPanel.setBackground(null);
         labelPanel.setBorder(new EmptyBorder(20, 20, 5, 0));
-        labelPanel.add(labelBranche);
+        labelPanel.add(new DefaultLabel(branch + " :", 30f));
         branchPanel.add(labelPanel);
 
         final JPanel separation = new JPanel(new FlowLayout(FlowLayout.LEADING));

@@ -75,23 +75,12 @@ public class TroopConfiguration extends JPanel {
         leftPanel.setBorder(new EmptyBorder(0, 5, 0, 0));
         leftPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
-        JLabel title1 = new JLabel("Paramétrages des ");
-        title1.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
-        title1.setForeground(Color.WHITE);
-
-        JLabel title2 = new JLabel("troupes");
-        title2.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
-        title2.setForeground(Color.WHITE);
-
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
         titlePanel.setBackground(null);
-        titlePanel.add(title1);
-        titlePanel.add(title2);
+        titlePanel.add(new DefaultLabel("Paramétrages des ", 30f));
+        titlePanel.add(new DefaultLabel("troupes", 30f));
 
-        pointsLabel = new JLabel("Points restants : 400");
-        pointsLabel.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setBackground(null);
+        pointsLabel = new DefaultLabel("Points restants : 400", 20f);
 
         pointsBar = new CustomProgressBar();
         pointsBar.setMinimum(0);
@@ -122,17 +111,13 @@ public class TroopConfiguration extends JPanel {
         line.setForeground(Color.BLACK);
         line.setBackground(null);
 
-        JLabel reservistLabel = new JLabel("Réservistes: ");
-        reservistLabel.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        reservistLabel.setForeground(Color.WHITE);
-
         JLabel reservistCount = new JLabel("0/5");
         reservistCount.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
         reservistCount.setForeground(Color.RED);
 
         JPanel reservistText = new JPanel();
         reservistText.setBackground(null);
-        reservistText.add(reservistLabel);
+        reservistText.add(new DefaultLabel("Réservistes: ", 20f));
         reservistText.add(reservistCount);
 
         JPanel reservistDropPanel = new CardDropPanel(5, CardForm.MINIMIZED);

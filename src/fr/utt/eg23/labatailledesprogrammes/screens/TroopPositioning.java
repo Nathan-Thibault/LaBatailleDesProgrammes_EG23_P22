@@ -57,9 +57,7 @@ public class TroopPositioning extends BackgroundPanel {
         infosPanel.setBounds(5, 200, 320, 250);
         add(infosPanel);
 
-        JLabel title = new JLabel("Phase de déploiement des troupes");
-        title.setForeground(Color.WHITE);
-        title.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(30f));
+        JLabel title = new DefaultLabel("Phase de déploiement des troupes", 30f);
         title.setBounds(500, 5, 500, 40);
         add(title);
 
