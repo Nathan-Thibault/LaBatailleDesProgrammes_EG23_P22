@@ -2,11 +2,10 @@ package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.BlinkLabel;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.CustomProgressBar;
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.DropPanel;
+import fr.utt.eg23.labatailledesprogrammes.card.CardForm;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.*;
 import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
-import fr.utt.eg23.labatailledesprogrammes.fighter.GameCard;
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,35 +13,44 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TroopConfiguration extends JPanel {
 
     private final JLabel pointsLabel;
     private final CustomProgressBar pointsBar;
 
+    private final Set<GameCard> cardSet = new HashSet<>(20);
+
     public TroopConfiguration(UTTBranch branch) {
         JPanel cardsPanel = new JPanel();
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
-        JPanel row0 = new DropPanel(5);
+        JPanel row0 = new CardDropPanel(5, CardForm.FULL);
         row0.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
         row0.setBackground(null);
-        row0.add(new GameCard(branch, FighterType.MASTER_OF_WAR));
+        GameCard mow = new GameCard(branch, FighterType.MASTER_OF_WAR);
+        cardSet.add(mow);
+        row0.add(mow);
         for (int i = 0; i < 4; i++) {
-            row0.add(new GameCard(branch, FighterType.ELITE_SOLDIER));
+            GameCard es = new GameCard(branch, FighterType.ELITE_SOLDIER);
+            cardSet.add(es);
+            row0.add(es);
         }
         cardsPanel.add(row0);
 
         //add 3 rows of 5 soldier
         for (int n = 1; n < 4; n++) {
-            JPanel rowN = new DropPanel(5);
+            JPanel rowN = new CardDropPanel(5, CardForm.FULL);
             rowN.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
             rowN.setBackground(null);
             rowN.setBorder(new EmptyBorder(3, 0, 0, 0));
             for (int i = 0; i < 5; i++) {
-                rowN.add(new GameCard(branch, FighterType.SOLDIER));
+                GameCard s = new GameCard(branch, FighterType.SOLDIER);
+                cardSet.add(s);
+                rowN.add(s);
             }
             cardsPanel.add(rowN);
         }
@@ -101,51 +109,9 @@ public class TroopConfiguration extends JPanel {
         pointsBarPanel.add(pointsLabel);
         pointsBarPanel.add(pointsBar);
 
-        JLabel timeText = new JLabel("Temps restant: ");
-        timeText.setForeground(Color.WHITE);
-        timeText.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
+        JPanel timePanel = new TimerDisplay(180, () -> LaBatailleDesProgrammes.getInstance().switchPanel(new TroopPositioning(cardSet)));
 
-        AtomicInteger secondsLeft = new AtomicInteger(70);
-        String str = String.format("%02d:%02d", (secondsLeft.get() % 3600) / 60, (secondsLeft.get() % 60));//mm:ss
-        BlinkLabel timeLeft = new BlinkLabel(str, 150);
-        timeLeft.setBlinking(false);
-        timeLeft.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        timeLeft.setForeground(Color.WHITE);
-        Timer timer = new Timer(1000, e -> {
-            secondsLeft.addAndGet(-1);
-            String s = String.format("%02d:%02d", (secondsLeft.get() % 3600) / 60, (secondsLeft.get() % 60));//mm:ss
-            if (secondsLeft.get() < 60 && !timeLeft.getForeground().equals(Color.RED)) {
-                timeLeft.setForeground(Color.RED);
-                timeLeft.setBlinking(true);
-            }
-
-            timeLeft.setText(s);
-            timeLeft.revalidate();
-            timeLeft.repaint();
-        });
-        timer.setRepeats(true);
-        timer.setCoalesce(true);
-        timer.start();
-
-        JPanel timePanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
-        timePanel.setBackground(null);
-        timePanel.add(timeText);
-        timePanel.add(timeLeft);
-
-        JCheckBox readyCheckBox = new JCheckBox();
-        readyCheckBox.setText("Êtes vous prêts ?");
-        readyCheckBox.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
-        readyCheckBox.setForeground(Color.WHITE);
-        readyCheckBox.setBackground(null);
-
-        JLabel opponentStatus = new JLabel("Votre adversaire n'est pas prêt...");
-        opponentStatus.setFont(LaBatailleDesProgrammes.GAME_FONT);
-        opponentStatus.setForeground(Color.WHITE);
-
-        JPanel readyPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
-        readyPanel.setBackground(null);
-        readyPanel.add(readyCheckBox);
-        readyPanel.add(opponentStatus);
+        JPanel readyPanel = new ReadyPanel(() -> LaBatailleDesProgrammes.getInstance().switchPanel(new TroopPositioning(cardSet)));
 
         leftPanel.add(titlePanel);
         leftPanel.add(pointsBarPanel);
@@ -169,7 +135,7 @@ public class TroopConfiguration extends JPanel {
         reservistText.add(reservistLabel);
         reservistText.add(reservistCount);
 
-        JPanel reservistDropPanel = new DropPanel(5);
+        JPanel reservistDropPanel = new CardDropPanel(5, CardForm.MINIMIZED);
         reservistDropPanel.setBackground(null);
         reservistDropPanel.setBorder(new LineBorder(Color.BLACK, 5));
         reservistDropPanel.setPreferredSize(new Dimension(0, 80));

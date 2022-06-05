@@ -1,6 +1,9 @@
 package fr.utt.eg23.labatailledesprogrammes.draganddrop;
 
-import fr.utt.eg23.labatailledesprogrammes.customcomponents.DropPanel;
+import fr.utt.eg23.labatailledesprogrammes.card.DotCard;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.CardDropPanel;
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
+import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +17,8 @@ public class DropHandler implements DropTargetListener, Serializable {
     public void dragEnter(DropTargetDragEvent dtde) {
         if (dtde.isDataFlavorSupported(PanelDataFlavor.SHARED_INSTANCE)) {
             //make sure we respect the maxNumberOfChild in a DropPanel
-            if (dtde.getDropTargetContext().getComponent() instanceof DropPanel panel) {
-                if (panel.getComponentCount() < panel.getMaxNumberOfChild())
+            if (dtde.getDropTargetContext().getComponent() instanceof CardDropPanel panel) {
+                if (panel.getComponentCount() < panel.getMaxNumberOfCards())
                     dtde.acceptDrag(DnDConstants.ACTION_MOVE);
                 else
                     dtde.rejectDrag();
@@ -48,15 +51,23 @@ public class DropHandler implements DropTargetListener, Serializable {
                 Object data = transferable.getTransferData(PanelDataFlavor.SHARED_INSTANCE);
                 if (data instanceof JPanel panel) {
                     DropTargetContext dtc = dtde.getDropTargetContext();
-                    Component component = dtc.getComponent();
-                    if (component instanceof JComponent) {
+                    if (dtc.getComponent() instanceof JComponent component) {
                         Container parent = panel.getParent();
                         if (parent != null) {
                             parent.remove(panel);
                             parent.revalidate();
                             parent.repaint();
                         }
-                        ((JComponent) component).add(panel);
+                        if (panel instanceof GameCard gameCard) {
+                            gameCard.setOtherForm(null);
+                            if(component instanceof CardDropPanel cardDropPanel){
+                                switch (cardDropPanel.getCardForm()){
+                                    case FULL -> component.add(gameCard);
+                                    case MINIMIZED -> component.add(new MinimizedCard(gameCard));
+                                    case DOT -> component.add(new DotCard(gameCard));
+                                }
+                            }
+                        }else component.add(panel);
                         success = true;
                         dtde.acceptDrop(DnDConstants.ACTION_MOVE);
                         component.invalidate();

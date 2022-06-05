@@ -1,5 +1,9 @@
 package fr.utt.eg23.labatailledesprogrammes.draganddrop;
 
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
+import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
+import fr.utt.eg23.labatailledesprogrammes.card.OtherCardForm;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
@@ -71,7 +75,16 @@ public class DragGestureHandler implements DragGestureListener, DragSourceListen
         if (!dsde.getDropSuccess()) {
             getParent().add(getPanel());
         } else {
-            getPanel().remove(getPanel());
+            if (getPanel() instanceof GameCard gameCard) {
+                OtherCardForm cf = gameCard.getOtherForm();
+                if (cf != null) {
+                    cf.disposeFrame();
+                    Container mParent = cf.getParent();
+                    mParent.remove(cf);
+                    mParent.revalidate();
+                    mParent.repaint();
+                }
+            }else getParent().remove(getPanel());
         }
         getParent().invalidate();
         getParent().repaint();
