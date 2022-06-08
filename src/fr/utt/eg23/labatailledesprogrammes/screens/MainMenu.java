@@ -5,6 +5,7 @@ import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
 import fr.utt.eg23.labatailledesprogrammes.popups.ConnexionPopup;
+import fr.utt.eg23.labatailledesprogrammes.popups.InfosPopUp;
 import fr.utt.eg23.labatailledesprogrammes.popups.MatchmakingPopup;
 import fr.utt.eg23.labatailledesprogrammes.popups.ParameterPopup;
 
@@ -47,7 +48,7 @@ public class MainMenu extends JPanel {
         btnBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 
         TextButton btnInfos = new TextButton("Infos", 50, () -> {
-            //TODO fenetre Infos
+            new InfosPopUp();
         });
         btnInfos.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnInfos.setHorizontalAlignment(SwingConstants.LEFT);
