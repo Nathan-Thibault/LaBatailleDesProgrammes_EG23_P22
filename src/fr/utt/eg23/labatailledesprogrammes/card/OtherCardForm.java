@@ -7,7 +7,11 @@ import java.awt.event.MouseListener;
 public abstract class OtherCardForm extends JPanel {
     private JFrame frame;
 
+    private final GameCard original;
+
     protected OtherCardForm(GameCard original) {
+        this.original = original;
+
         addMouseListener(new MouseListener() {
 
             @Override
@@ -52,5 +56,9 @@ public abstract class OtherCardForm extends JPanel {
     public void disposeFrame() {
         frame.dispose();
         frame = null;
+    }
+
+    public GameCard getOriginal() {
+        return original;
     }
 }

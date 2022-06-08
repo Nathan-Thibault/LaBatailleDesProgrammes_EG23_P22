@@ -23,7 +23,9 @@ public class TroopConfiguration extends JPanel {
 
     private final Set<GameCard> cardSet = new HashSet<>(20);
 
-    public TroopConfiguration(UTTBranch branch) {
+    public TroopConfiguration() {
+        UTTBranch branch = LaBatailleDesProgrammes.getInstance().getBranch();
+
         JPanel cardsPanel = new JPanel();
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
