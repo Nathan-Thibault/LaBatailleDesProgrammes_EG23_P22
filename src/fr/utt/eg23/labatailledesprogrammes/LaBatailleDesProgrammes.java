@@ -1,10 +1,17 @@
 package fr.utt.eg23.labatailledesprogrammes;
 
-import fr.utt.eg23.labatailledesprogrammes.screens.TitleScreen;
+import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
+import fr.utt.eg23.labatailledesprogrammes.customcomponents.OpponentFighter;
+import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
 import fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration;
+import fr.utt.eg23.labatailledesprogrammes.screens.TroopPositioning;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class LaBatailleDesProgrammes {
 
@@ -23,6 +30,10 @@ public class LaBatailleDesProgrammes {
     public static final Dimension FRAME_SIZE = new Dimension(1280, 720);
 
     private TroopConfiguration troopConfiguration = null;
+    private final Map<String, Set<GameCard>> playerTroops = new HashMap<>(5);
+    private final Map<String, Map<FighterType, Integer>> opponentTroops = new HashMap<>(5);
+
+    private UTTBranch branch = null;
 
     public static LaBatailleDesProgrammes getInstance() {
         return instance;
@@ -49,7 +60,15 @@ public class LaBatailleDesProgrammes {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new TitleScreen());
+//        frame.getContentPane().add(new TitleScreen());
+        //test
+        branch = UTTBranch.ISI;
+        Set<GameCard> cards = new HashSet<>(10);
+        for (int i = 0; i < 10; i++) {
+            cards.add(new GameCard(branch, FighterType.SOLDIER));
+        }
+        TroopPositioning tp = new TroopPositioning(cards);
+        frame.getContentPane().add(tp);
     }
 
     public void switchPanel(JPanel newPanel) {
@@ -65,5 +84,25 @@ public class LaBatailleDesProgrammes {
 
     public void setTroopConfiguration(TroopConfiguration troopConfiguration) {
         this.troopConfiguration = troopConfiguration;
+    }
+
+    public UTTBranch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(UTTBranch branch) {
+        this.branch = branch;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public Map<String, Set<GameCard>> getPlayerTroops() {
+        return playerTroops;
+    }
+
+    public Map<String, Map<FighterType, Integer>> getOpponentTroops() {
+        return opponentTroops;
     }
 }

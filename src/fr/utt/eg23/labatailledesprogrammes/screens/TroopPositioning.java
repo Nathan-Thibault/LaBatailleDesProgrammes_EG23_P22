@@ -1,14 +1,16 @@
 package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
-import fr.utt.eg23.labatailledesprogrammes.card.CardForm;
+import fr.utt.eg23.labatailledesprogrammes.card.*;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.*;
-import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
-import fr.utt.eg23.labatailledesprogrammes.card.MinimizedCard;
+import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class TroopPositioning extends BackgroundPanel {
 
@@ -46,7 +48,40 @@ public class TroopPositioning extends BackgroundPanel {
 
         JPanel timePanel = new TimerDisplay(120, null);
 
-        ReadyPanel readyPanel = new ReadyPanel(null);
+        ReadyPanel readyPanel = new ReadyPanel(() -> {
+            Map<String, Set<GameCard>> playerTroops = LaBatailleDesProgrammes.getInstance().getPlayerTroops();
+            playerTroops.put("red", new HashSet<>());
+            playerTroops.put("blue", new HashSet<>());
+            playerTroops.put("orange", new HashSet<>());
+            playerTroops.put("green", new HashSet<>());
+            playerTroops.put("pink", new HashSet<>());
+
+            //save troop positioning in main class hashmap
+            for (String cName : playerTroops.keySet()) {
+                JPanel areaPanel = switch (cName) {
+                    case "red" -> redArea;
+                    case "blue" -> blueArea;
+                    case "orange" -> orangeArea;
+                    case "green" -> greenArea;
+                    case "pink" -> pinkArea;
+                    default -> throw new IllegalArgumentException("cName unrecognized");
+                };
+
+                for (Component c : areaPanel.getComponents()) {
+                    playerTroops.get(cName).add(((OtherCardForm) c).getOriginal());
+                }
+            }
+
+            //mock opponent troop positioning
+            Map<String, Map<FighterType, Integer>> opponentTroops = LaBatailleDesProgrammes.getInstance().getOpponentTroops();
+            opponentTroops.put("red", Map.of(FighterType.MASTER_OF_WAR, 1, FighterType.SOLDIER, 4));
+            opponentTroops.put("green", Map.of(FighterType.ELITE_SOLDIER, 1, FighterType.SOLDIER, 2));
+            opponentTroops.put("pink", Map.of(FighterType.ELITE_SOLDIER, 1, FighterType.SOLDIER, 2));
+            opponentTroops.put("orange", Map.of(FighterType.SOLDIER, 2));
+            opponentTroops.put("blue", Map.of(FighterType.SOLDIER, 2));
+
+            LaBatailleDesProgrammes.getInstance().switchPanel(new BattleVisualisation());
+        });
         readyPanel.setOpponentReady(true);
 
         JPanel infosPanel = new JPanel();

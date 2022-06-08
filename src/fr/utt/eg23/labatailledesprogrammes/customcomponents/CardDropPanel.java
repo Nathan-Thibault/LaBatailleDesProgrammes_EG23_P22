@@ -42,7 +42,6 @@ public class CardDropPanel extends JPanel {
                     if (count > 0) {
                         double size = DotCard.DEFAULT_SIZE.getWidth();
                         int newSize = (int) (size * 1 / Math.pow(count, 1f / 3f));
-                        System.out.println(newSize);
                         Dimension newDimension = new Dimension(newSize, newSize);
                         for (Component c : container.getComponents()) {
                             c.setPreferredSize(newDimension);

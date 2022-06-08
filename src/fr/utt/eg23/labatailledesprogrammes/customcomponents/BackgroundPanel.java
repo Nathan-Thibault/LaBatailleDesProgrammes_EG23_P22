@@ -24,7 +24,7 @@ public class BackgroundPanel extends JPanel {
     public void setBackground(String imageFileName) {
         try {
             BufferedImage buffImg = ImageIO.read(Objects.requireNonNull(
-                    LaBatailleDesProgrammes.class.getResource("/resources/images/" + imageFileName)));
+                    LaBatailleDesProgrammes.class.getResource("/resources/images/backgrounds/" + imageFileName)));
             this.img = buffImg.getScaledInstance((int) LaBatailleDesProgrammes.FRAME_SIZE.getWidth(),
                     (int) LaBatailleDesProgrammes.FRAME_SIZE.getHeight(), Image.SCALE_SMOOTH);
         } catch (IOException e) {
