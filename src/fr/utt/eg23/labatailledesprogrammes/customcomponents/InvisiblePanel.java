@@ -21,14 +21,10 @@ public class InvisiblePanel extends JPanel implements MouseListener {
         this.colorName = colorName;
         this.vis = vis;
         addMouseListener(this);
+        update();
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    private void update() {
         JPanel playerTroopPanel = vis.getPlayerTroopPanel();
         playerTroopPanel.removeAll();
         for (GameCard gc : LaBatailleDesProgrammes.getInstance().getPlayerTroops().get(colorName)) {
@@ -47,6 +43,18 @@ public class InvisiblePanel extends JPanel implements MouseListener {
         vis.setBackground(colorName + "_bg.png");
         vis.revalidate();
         vis.repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        //uncomment to show hitbox
+//        g.setColor(Color.WHITE);
+//        g.drawRect(0, 0, getWidth()-1, getHeight()-1);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        update();
     }
 
     @Override

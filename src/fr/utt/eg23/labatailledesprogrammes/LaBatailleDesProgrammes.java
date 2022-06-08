@@ -3,6 +3,7 @@ package fr.utt.eg23.labatailledesprogrammes;
 import fr.utt.eg23.labatailledesprogrammes.card.GameCard;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.OpponentFighter;
 import fr.utt.eg23.labatailledesprogrammes.fighter.FighterType;
+import fr.utt.eg23.labatailledesprogrammes.screens.TitleScreen;
 import fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration;
 import fr.utt.eg23.labatailledesprogrammes.screens.TroopPositioning;
 
@@ -60,15 +61,7 @@ public class LaBatailleDesProgrammes {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().add(new TitleScreen());
-        //test
-        branch = UTTBranch.ISI;
-        Set<GameCard> cards = new HashSet<>(10);
-        for (int i = 0; i < 10; i++) {
-            cards.add(new GameCard(branch, FighterType.SOLDIER));
-        }
-        TroopPositioning tp = new TroopPositioning(cards);
-        frame.getContentPane().add(tp);
+        frame.getContentPane().add(new TitleScreen());
     }
 
     public void switchPanel(JPanel newPanel) {

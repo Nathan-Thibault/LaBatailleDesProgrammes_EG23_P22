@@ -83,7 +83,8 @@ public class MatchmakingPopup extends JDialog {
             if (v >= max) {
                 ((Timer) et.getSource()).stop();
                 progressLabel.setText("Partie trouvée ! Démarrage !");
-                TroopConfiguration tc = new TroopConfiguration((UTTBranch) branchComboBox.getSelectedItem());
+                LaBatailleDesProgrammes.getInstance().setBranch((UTTBranch) branchComboBox.getSelectedItem());
+                TroopConfiguration tc = new TroopConfiguration();
                 LaBatailleDesProgrammes.getInstance().setTroopConfiguration(tc);
                 LaBatailleDesProgrammes.getInstance().switchPanel(tc);
                 dispose();

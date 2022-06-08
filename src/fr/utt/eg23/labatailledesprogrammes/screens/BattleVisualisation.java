@@ -22,26 +22,6 @@ public class BattleVisualisation extends BackgroundPanel {
         setLayout(null);
         setBackground("red_bg.png");
 
-        JPanel bluePanel = new InvisiblePanel("blue", this);
-        bluePanel.setBounds(620, 355, 60, 60);
-        add(bluePanel);
-
-        JPanel greenPanel = new InvisiblePanel("green", this);
-        greenPanel.setBounds(585, 303, 45, 38);
-        add(greenPanel);
-
-        JPanel redPanel = new InvisiblePanel("red", this);
-        redPanel.setBounds(720, 300, 90, 60);
-        add(redPanel);
-
-        JPanel pinkPanel = new InvisiblePanel("pink", this);
-        pinkPanel.setBounds(765, 375, 105, 130);
-        add(pinkPanel);
-
-        JPanel orangePanel = new InvisiblePanel("orange", this);
-        orangePanel.setBounds(415, 80, 110, 100);
-        add(orangePanel);
-
         JLabel title = new DefaultLabel("Combats en cours...", 30f);
         title.setBounds(10, 10, 400, 35);
         add(title);
@@ -60,12 +40,10 @@ public class BattleVisualisation extends BackgroundPanel {
         UTTBranch branch = Objects.requireNonNull(LaBatailleDesProgrammes.getInstance().getBranch());
         JPanel playerBranch = new JPanel();
         playerBranch.setBackground(null);
-        playerBranch.setPreferredSize(new Dimension(0, 17));
         playerBranch.add(new DefaultLabel(branch.toString()));
 
         JPanel opponentBranch = new JPanel();
         opponentBranch.setBackground(null);
-        opponentBranch.setPreferredSize(new Dimension(0, 17));
         opponentBranch.add(new DefaultLabel(UTTBranch.RT.toString()));
 
         opponentTroopPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
@@ -80,14 +58,41 @@ public class BattleVisualisation extends BackgroundPanel {
         line.setBorder(new EmptyBorder(0, 20, 0, 20));
         JPanel linePanel = new JPanel();
         linePanel.setBackground(null);
-        linePanel.setPreferredSize(new Dimension(0, 10));
         linePanel.add(line);
 
-        mainPanel.add(opponentBranch);
-        mainPanel.add(opponentTroopPanel);
-        mainPanel.add(linePanel);
-        mainPanel.add(playerTroopPanel);
-        mainPanel.add(playerBranch);
+        JPanel north = new JPanel(new BorderLayout());
+        north.setBackground(null);
+        north.add(opponentBranch, BorderLayout.NORTH);
+        north.add(opponentTroopPanel, BorderLayout.CENTER);
+        north.add(linePanel, BorderLayout.SOUTH);
+
+        JPanel south = new JPanel(new BorderLayout());
+        south.setBackground(null);
+        south.add(playerBranch, BorderLayout.SOUTH);
+        south.add(playerTroopPanel, BorderLayout.CENTER);
+
+        mainPanel.add(north);
+        mainPanel.add(south);
+
+        JPanel bluePanel = new InvisiblePanel("blue", this);
+        bluePanel.setBounds(275, 355, 60, 60);
+        add(bluePanel);
+
+        JPanel greenPanel = new InvisiblePanel("green", this);
+        greenPanel.setBounds(240, 303, 45, 38);
+        add(greenPanel);
+
+        JPanel redPanel = new InvisiblePanel("red", this);
+        redPanel.setBounds(375, 300, 90, 60);
+        add(redPanel);
+
+        JPanel pinkPanel = new InvisiblePanel("pink", this);
+        pinkPanel.setBounds(420, 375, 105, 130);
+        add(pinkPanel);
+
+        JPanel orangePanel = new InvisiblePanel("orange", this);
+        orangePanel.setBounds(70, 80, 110, 100);
+        add(orangePanel);
     }
 
     public JPanel getOpponentTroopPanel() {
