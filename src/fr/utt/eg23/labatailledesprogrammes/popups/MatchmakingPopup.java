@@ -76,7 +76,7 @@ public class MatchmakingPopup extends JDialog {
         progressBar.setBarsVisible(false);
         progressBar.setStringVisible(false);
 
-        Timer t = new Timer(50, et -> {
+        Timer t = new Timer(25, et -> {
             int v = progressBar.getValue() + 1;
             int max = progressBar.getMaximum();
 

@@ -23,7 +23,7 @@ public class BattleVisualisation extends BackgroundPanel {
         setBackground("red_bg.png");
 
         JLabel title = new DefaultLabel("Combats en cours...", 30f);
-        title.setBounds(10, 10, 400, 35);
+        title.setBounds(200, 10, 400, 35);
         add(title);
 
         JPanel mainPanel = new JPanel();
@@ -73,6 +73,14 @@ public class BattleVisualisation extends BackgroundPanel {
 
         mainPanel.add(north);
         mainPanel.add(south);
+
+        JLabel hint = new JLabel("  (Cliquer sur les zones pour afficher les combats.)");
+        hint.setAlignmentX(Component.CENTER_ALIGNMENT);
+        hint.setForeground(Color.GRAY);
+        hint.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(10f));
+        hint.setBounds((int) LaBatailleDesProgrammes.FRAME_SIZE.getWidth() / 2 - 200,
+                (int) LaBatailleDesProgrammes.FRAME_SIZE.getHeight() - 53, 400, 12);
+        add(hint);
 
         JPanel bluePanel = new InvisiblePanel("blue", this);
         bluePanel.setBounds(275, 355, 60, 60);

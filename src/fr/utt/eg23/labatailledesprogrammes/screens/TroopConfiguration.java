@@ -117,10 +117,15 @@ public class TroopConfiguration extends JPanel {
         reservistCount.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(20f));
         reservistCount.setForeground(Color.RED);
 
+        JLabel reservistHint = new JLabel("  (Glisser/déposer les cartes dans la zone ci-dessous)");
+        reservistHint.setForeground(Color.GRAY);
+        reservistHint.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(10f));
+
         JPanel reservistText = new JPanel();
         reservistText.setBackground(null);
         reservistText.add(new DefaultLabel("Réservistes: ", 20f));
         reservistText.add(reservistCount);
+        reservistText.add(reservistHint);
 
         JPanel reservistDropPanel = new CardDropPanel(5, CardForm.MINIMIZED);
         reservistDropPanel.setBackground(null);

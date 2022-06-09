@@ -10,7 +10,6 @@ import java.awt.*;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class TroopPositioning extends BackgroundPanel {
 
@@ -93,7 +92,7 @@ public class TroopPositioning extends BackgroundPanel {
         add(infosPanel);
 
         JLabel title = new DefaultLabel("Phase de déploiement des troupes", 30f);
-        title.setBounds(500, 5, 500, 40);
+        title.setBounds(450, 5, 600, 40);
         add(title);
 
         JPanel cardsPanel = new CardDropPanel(20, CardForm.MINIMIZED);
@@ -112,5 +111,13 @@ public class TroopPositioning extends BackgroundPanel {
         scrollPane.setBounds(0, (int) LaBatailleDesProgrammes.FRAME_SIZE.getHeight() - height - 40,
                 (int) LaBatailleDesProgrammes.FRAME_SIZE.getWidth() - 17, height);
         add(scrollPane);
+
+        JLabel hint = new JLabel("  (Glisser/déposer les cartes dans les bulles colorées.)");
+        hint.setAlignmentX(Component.CENTER_ALIGNMENT);
+        hint.setForeground(Color.GRAY);
+        hint.setFont(LaBatailleDesProgrammes.GAME_FONT.deriveFont(10f));
+        hint.setBounds((int) LaBatailleDesProgrammes.FRAME_SIZE.getWidth() / 2 - 200,
+                (int) LaBatailleDesProgrammes.FRAME_SIZE.getHeight() - height - 53, 400, 12);
+        add(hint);
     }
 }
