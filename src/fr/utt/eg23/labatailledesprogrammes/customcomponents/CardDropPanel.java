@@ -11,6 +11,13 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import javax.swing.JPanel;
 
+/**
+ * Panel that allows a drop of component, specifically {@link fr.utt.eg23.labatailledesprogrammes.card.OtherCardForm}.
+ * If the panel will be receiving {@link DotCard},
+ * each time a card is added or remove, every card in the panel will be resized.
+ *
+ * @see DropHandler
+ */
 public class CardDropPanel extends JPanel {
 
     private DropTarget dropTarget;

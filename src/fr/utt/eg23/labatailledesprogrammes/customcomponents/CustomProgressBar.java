@@ -5,7 +5,8 @@ import java.io.Serial;
 import javax.swing.JProgressBar;
 
 /**
- * Modified code found here: https://stackoverflow.com/a/14036372
+ * CustomProgressBar allows to change the progress color,
+ * display dividing bars and display custom text.
  */
 public class CustomProgressBar extends JProgressBar {
     @Serial

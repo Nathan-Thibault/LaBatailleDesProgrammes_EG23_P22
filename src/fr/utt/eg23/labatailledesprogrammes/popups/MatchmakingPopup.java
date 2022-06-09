@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.Objects;
 
-
 public class MatchmakingPopup extends JDialog {
     public MatchmakingPopup() {
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
@@ -30,6 +29,7 @@ public class MatchmakingPopup extends JDialog {
         JComboBox<UTTBranch> branchComboBox = new JComboBox<>(UTTBranch.values());
         JComboBox<ImageIcon> skinComboBox = new JComboBox<>();
 
+        //update skins depending on selected branch
         branchComboBox.addActionListener(e -> {
             skinComboBox.removeAllItems();
             String[] fileNames = ((UTTBranch) Objects.requireNonNull(branchComboBox.getSelectedItem())).getSkinsFileNames();
@@ -76,6 +76,7 @@ public class MatchmakingPopup extends JDialog {
         progressBar.setBarsVisible(false);
         progressBar.setStringVisible(false);
 
+        //timer to make bar progress
         Timer t = new Timer(25, et -> {
             int v = progressBar.getValue() + 1;
             int max = progressBar.getMaximum();

@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * OtherCardForm is a component that represents a {@link GameCard} in a different form.
+ * When the mouse passes over the form the original GameCard is displayed.
+ */
 public abstract class OtherCardForm extends JPanel {
     private JFrame frame;
 

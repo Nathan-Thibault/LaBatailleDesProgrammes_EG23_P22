@@ -16,6 +16,12 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragSource;
 import java.util.HashSet;
 
+/**
+ * A GameCard represents a fighter and allows to modify its properties
+ * as well as its strategy. It also has an icon for aesthetics.
+ *
+ * @see PropertyModifier
+ */
 public class GameCard extends JPanel {
     public static final Color BACKGROUND_COLOR = new Color(194, 194, 200);
     public static final Dimension SIZE = new Dimension(180, 340);

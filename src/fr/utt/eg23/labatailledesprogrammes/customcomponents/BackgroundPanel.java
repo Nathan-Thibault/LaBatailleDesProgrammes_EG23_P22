@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Allows to put an image as the background of a panel.
+ */
 public class BackgroundPanel extends JPanel {
 
     private Image img;

@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Squares with life bar representing an opponent fighter.
+ */
 public class OpponentFighter extends JPanel {
     public static final Dimension DEFAULT_SIZE = new Dimension(60, 75);
 

@@ -11,6 +11,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+/**
+ * Component to modify and display a {@link FighterProperty} on a {@link GameCard}.
+ * <p>
+ * It's composed of a {@link CustomProgressBar}, a "+" and "-" buttons.
+ */
 public class PropertyModifier extends JPanel {
 
     private final TextButton buttonLess;
@@ -44,6 +49,7 @@ public class PropertyModifier extends JPanel {
         pb.setForeground(Color.BLACK);
         actionPanel.add(pb);
 
+        //subtract by one the property if not zero or default value and update points progress bar in TroopConfiguration
         buttonLess = new TextButton("-", 10f, () -> {
             if (pb.getValue() > min) {
                 pb.setValue(pb.getValue() - 1);
@@ -56,6 +62,7 @@ public class PropertyModifier extends JPanel {
         buttonLess.setForeground(Color.BLACK);
         actionPanel.add(buttonLess);
 
+        //add by one the property if not maximum value and update points progress bar in TroopConfiguration
         buttonMore = new TextButton("+", 10f, () -> {
             if (pb.getValue() < max) {
                 pb.setValue(pb.getValue() + 1);
@@ -69,6 +76,7 @@ public class PropertyModifier extends JPanel {
         actionPanel.add(buttonMore);
     }
 
+    //show or not buttons + and -
     public void setModifiable(boolean modifiable) {
         if (modifiable) {
             buttonLess.setEnabled(true);

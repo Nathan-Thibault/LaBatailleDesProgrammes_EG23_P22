@@ -2,6 +2,9 @@ package fr.utt.eg23.labatailledesprogrammes.fighter;
 
 import java.awt.Color;
 
+/**
+ * Represents the types of fighter existing in the game.
+ */
 public enum FighterType {
     SOLDIER("Soldat", "so", new Color(9, 9, 10)),
     ELITE_SOLDIER("Soldat d'élite", "se", new Color(100, 100, 101)),

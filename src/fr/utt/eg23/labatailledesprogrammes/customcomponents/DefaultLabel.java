@@ -5,6 +5,7 @@ import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import javax.swing.*;
 import java.awt.*;
 
+//created for convenience, avoids setting the font and foreground each time
 public class DefaultLabel extends JLabel {
     public DefaultLabel(String text) {
         super(text);

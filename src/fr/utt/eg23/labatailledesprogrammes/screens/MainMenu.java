@@ -1,10 +1,8 @@
 package fr.utt.eg23.labatailledesprogrammes.screens;
 
 import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
-import fr.utt.eg23.labatailledesprogrammes.UTTBranch;
 import fr.utt.eg23.labatailledesprogrammes.Utils;
 import fr.utt.eg23.labatailledesprogrammes.customcomponents.TextButton;
-import fr.utt.eg23.labatailledesprogrammes.popups.ConnexionPopup;
 import fr.utt.eg23.labatailledesprogrammes.popups.InfosPopUp;
 import fr.utt.eg23.labatailledesprogrammes.popups.MatchmakingPopup;
 import fr.utt.eg23.labatailledesprogrammes.popups.ParameterPopup;
@@ -12,8 +10,6 @@ import fr.utt.eg23.labatailledesprogrammes.popups.ParameterPopup;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainMenu extends JPanel {
 
@@ -38,7 +34,7 @@ public class MainMenu extends JPanel {
         btnJouer.setHorizontalAlignment(SwingConstants.LEFT);
 
         TextButton btnTutoriel = new TextButton("Tutoriel", 50, () -> {
-            //TODO fenetre Tuto
+            //TODO tutorial
         });
         btnTutoriel.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnTutoriel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -47,9 +43,7 @@ public class MainMenu extends JPanel {
         btnBoutique.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 
-        TextButton btnInfos = new TextButton("Infos", 50, () -> {
-            new InfosPopUp();
-        });
+        TextButton btnInfos = new TextButton("Infos", 50, InfosPopUp::new);
         btnInfos.setBorder(new EmptyBorder(10, 25, 10, 10));
         btnInfos.setHorizontalAlignment(SwingConstants.LEFT);
 

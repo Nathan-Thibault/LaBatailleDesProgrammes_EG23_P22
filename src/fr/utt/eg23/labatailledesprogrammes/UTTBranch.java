@@ -1,5 +1,8 @@
 package fr.utt.eg23.labatailledesprogrammes;
 
+/**
+ * Represents a playable branch (sort of "faction", "team" or "side").
+ */
 public enum UTTBranch {
     ISI("Informatique et Système d'Information", "isi", new String[]{"smartphone.png", "tablette.png"}),
     RT("Réseaux et Télécomunications", "rt", new String[]{"cloud.png", "server.png"}),
@@ -11,7 +14,7 @@ public enum UTTBranch {
 
     private final String name;
     private final String fileNameAffix;
-    private final String[] skinsFileNames;
+    private final String[] skinsFileNames;//list of skins
 
     UTTBranch(String name, String fileNameAffix, String[] skinsFileNames) {
         this.name = name;

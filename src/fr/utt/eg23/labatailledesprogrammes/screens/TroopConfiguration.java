@@ -16,6 +16,11 @@ import java.awt.event.ContainerListener;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Screen for configuring troops.
+ * It has a {@link ReadyPanel}, a table of {@link GameCard},
+ * a progress bar to display points and a {@link CardDropPanel} for reservists.
+ */
 public class TroopConfiguration extends JPanel {
 
     private final JLabel pointsLabel;
@@ -30,6 +35,7 @@ public class TroopConfiguration extends JPanel {
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
         cardsPanel.setBackground(LaBatailleDesProgrammes.COLOR_BACKGROUND);
 
+        //first row with master of war and elite soldiers
         JPanel row0 = new CardDropPanel(5, CardForm.FULL);
         row0.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 0));
         row0.setBackground(null);
@@ -131,6 +137,7 @@ public class TroopConfiguration extends JPanel {
         reservistDropPanel.setBackground(null);
         reservistDropPanel.setBorder(new LineBorder(Color.BLACK, 5));
         reservistDropPanel.setPreferredSize(new Dimension(0, 80));
+        //color of reservist count is green if exactly five, red otherwise
         reservistDropPanel.addContainerListener(new ContainerListener() {
             @Override
             public void componentAdded(ContainerEvent e) {
@@ -171,6 +178,7 @@ public class TroopConfiguration extends JPanel {
         add(reservistPanel, BorderLayout.SOUTH);
     }
 
+    //add given amount of points to the points progress bar
     public void addToPoints(int addend) {
         int newValue = pointsBar.getValue() + addend;
         pointsBar.setValue(newValue);

@@ -7,6 +7,10 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+/**
+ * A {@link GameCard} without all its {@link fr.utt.eg23.labatailledesprogrammes.fighter.PropertyModifier}
+ * and dropdown to choose strategy.
+ */
 public class MinimizedCard extends OtherCardForm {
 
     public static final Dimension SIZE = new Dimension((int) GameCard.SIZE.getWidth(),

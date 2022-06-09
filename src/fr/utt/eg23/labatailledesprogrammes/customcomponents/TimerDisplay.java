@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Component that shows the time left.
+ * If the time is under 1 minute, the text goes red and blinking.
+ */
 public class TimerDisplay extends JPanel {
     public TimerDisplay(int timeInSeconds, Runnable onEnd) {
         JLabel timeText = new JLabel("Temps restant: ");

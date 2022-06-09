@@ -11,6 +11,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Screen to position troops on battle areas.
+ * Cards are drag from the inventory bar on the bottom and drop to an area in the corresponding bubble.
+ *
+ * @see CardDropPanel
+ */
 public class TroopPositioning extends BackgroundPanel {
 
     private static final int areaWidth = 145;

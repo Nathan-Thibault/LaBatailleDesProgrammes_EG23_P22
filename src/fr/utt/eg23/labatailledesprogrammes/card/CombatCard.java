@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Basically just adds a life bar to a {@link DotCard}.
+ */
 public class CombatCard extends OtherCardForm {
     public static final Dimension DEFAULT_SIZE = new Dimension(60, 75);
 

@@ -13,6 +13,13 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Screen to visualize the battle.
+ * One area is visualized at a time in the mainPanel.
+ * When clicking on an area, the mainPanel updates to show the battle of that area.
+ *
+ * @see InvisiblePanel
+ */
 public class BattleVisualisation extends BackgroundPanel {
 
     private final JPanel opponentTroopPanel;

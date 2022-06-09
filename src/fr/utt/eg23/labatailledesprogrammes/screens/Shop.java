@@ -29,11 +29,9 @@ public class Shop extends JPanel {
         final TextButton returnButton = new TextButton("Retour", 30, () -> LaBatailleDesProgrammes.getInstance().switchPanel(new MainMenu()));
         northPanel.add(returnButton, BorderLayout.WEST);
 
-
         final JLabel title = new DefaultLabel("Boutique", 50f);
         title.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(title, BorderLayout.CENTER);
-
 
         final JLabel moneyLeft = new DefaultLabel("Reste: 12€", 30f);
         moneyLeft.setHorizontalAlignment(JLabel.CENTER);
@@ -53,6 +51,7 @@ public class Shop extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    //creates a row of the shop, which correspond to a branch
     private JPanel createBranchPanel(UTTBranch branch) {
         final JPanel branchPanel = new JPanel();
         branchPanel.setLayout(new BoxLayout(branchPanel, BoxLayout.Y_AXIS));
@@ -77,6 +76,7 @@ public class Shop extends JPanel {
 
         skinsPanel.add(Box.createRigidArea(new Dimension(23, 0)));
 
+        //create all existing skins for this branch
         for (String skinFileName : branch.getSkinsFileNames()) {
             final JLabel skin = new JLabel();
             skin.setIcon(Utils.getImageToSize("shop/" + skinFileName, 130, 130));

@@ -11,6 +11,10 @@ import java.awt.datatransfer.Transferable;
 import java.awt.dnd.*;
 import java.io.Serializable;
 
+/**
+ * Custom DropTargetListener that allows to Drag and Drop a JPanel with its components
+ * and manages {@link fr.utt.eg23.labatailledesprogrammes.card.OtherCardForm}.
+ */
 public class DropHandler implements DropTargetListener, Serializable {
 
     @Override
@@ -58,6 +62,7 @@ public class DropHandler implements DropTargetListener, Serializable {
                             parent.revalidate();
                             parent.repaint();
                         }
+                        //manages OtherCardForms
                         if (panel instanceof GameCard gameCard) {
                             gameCard.setOtherForm(null);
                             if(component instanceof CardDropPanel cardDropPanel){

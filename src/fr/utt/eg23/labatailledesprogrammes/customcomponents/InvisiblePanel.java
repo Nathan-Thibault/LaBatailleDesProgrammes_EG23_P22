@@ -12,6 +12,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Map;
 
+/**
+ * Custom JPanel that has no graphics and updates the {@link BattleVisualisation} when clicked on.
+ */
 public class InvisiblePanel extends JPanel implements MouseListener {
 
     private final String colorName;
@@ -27,6 +30,7 @@ public class InvisiblePanel extends JPanel implements MouseListener {
     private void update() {
         JPanel playerTroopPanel = vis.getPlayerTroopPanel();
         playerTroopPanel.removeAll();
+        //fill playerTroopPanel with CombatCard for each card in the corresponding area represented by the panel
         for (GameCard gc : LaBatailleDesProgrammes.getInstance().getPlayerTroops().get(colorName)) {
             playerTroopPanel.add(new CombatCard(gc));
         }
@@ -34,6 +38,7 @@ public class InvisiblePanel extends JPanel implements MouseListener {
 
         JPanel opponentTroopPanel = vis.getOpponentTroopPanel();
         opponentTroopPanel.removeAll();
+        //fill opponentTroopPanel with the mocked opponent troops
         for (Map.Entry<FighterType, Integer> entry : LaBatailleDesProgrammes.getInstance().getOpponentTroops().get(colorName).entrySet()) {
             for (int i = 0; i < entry.getValue(); i++)
                 opponentTroopPanel.add(new OpponentFighter(entry.getKey()));

@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**
+ * Custom button with just the text visible. Text that changes color when the mouse is over.
+ */
 public class TextButton extends JButton {
 
     public static final Color COLOR_DEFAULT = Color.WHITE;
@@ -44,11 +47,11 @@ public class TextButton extends JButton {
         });
     }
 
-    private void setColorDefault(){
+    private void setColorDefault() {
         super.setForeground(foregroundColor);
     }
 
-    private void setColorMouseOver(){
+    private void setColorMouseOver() {
         super.setForeground(mouseOverColor);
     }
 

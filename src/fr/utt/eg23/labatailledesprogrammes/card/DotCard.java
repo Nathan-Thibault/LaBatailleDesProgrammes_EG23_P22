@@ -11,6 +11,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Overrides paintComponent() method.
+ * <p>
+ * Paints a disc colored depending on the {@link FighterType} it represents.
+ *
+ * @see OtherCardForm
+ */
 public class DotCard extends OtherCardForm {
     public static final Dimension DEFAULT_SIZE = new Dimension(50, 50);
 

@@ -5,6 +5,11 @@ import fr.utt.eg23.labatailledesprogrammes.LaBatailleDesProgrammes;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel with a {@link TimerDisplay} and a ready checkbox.
+ * Used in {@link fr.utt.eg23.labatailledesprogrammes.screens.TroopConfiguration} and
+ * {@link fr.utt.eg23.labatailledesprogrammes.screens.TroopPositioning}.
+ */
 public class ReadyPanel extends JPanel {
 
     private final JLabel opponentStatus;
